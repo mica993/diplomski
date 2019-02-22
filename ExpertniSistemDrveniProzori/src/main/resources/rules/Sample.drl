@@ -1,0 +1,542 @@
+package com.sample
+ 
+import klasa.DrveniProzor;
+
+ 
+import klasa.DrveniProzor.*;
+
+
+rule "Na osnovu  pozicije stana odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.stan && 
+       (pozicija == Pozicija.istok || pozicija == Pozicija.zapad ))
+    then
+     
+        dp.setDebljina(68);
+        //dp.setBrojStakala(3);
+        System.out.println("1.Pravilo");
+        update( dp );
+end
+
+rule " Ako je spratnost stana manja od 4 , dovoljna je debljina rama 68"
+lock-on-active true
+//salience 9
+    when
+       dp :  DrveniProzor( mestoZivljenja == MestoZivljenja.stan && spratnost < 4 )
+    then
+     
+        dp.setDebljina(68);
+    
+        System.out.println("2.Pravilo");
+        update( dp );
+end
+
+rule " Ako je debljina rama 68 , moze samo dvoslojno staklo"
+no-loop true
+//salience 10
+   when
+     dp :  DrveniProzor(brojStakala != 2 && debljina == 68)
+   then
+     
+       dp.setBrojStakala(2);
+    System.out.println("3.Pravilo");
+      update( dp );
+end
+rule " Ako je spratnost stana manja > 4 i <15 , dovoljna je debljina rama 78"
+lock-on-active true
+//salience 10
+    when
+       dp :  DrveniProzor( mestoZivljenja == MestoZivljenja.stan && spratnost >= 4  && spratnost <= 15 )
+    then
+     
+        dp.setDebljina(78);
+    
+        System.out.println("4.Pravilo");
+        update( dp );
+end
+
+rule " Ako je spratnost stana manja  <16 , dovoljna je debljina rama 90"
+lock-on-active true
+//salience 10
+    when
+       dp :  DrveniProzor( mestoZivljenja == MestoZivljenja.stan && spratnost >= 16 )
+    then
+     
+        dp.setDebljina(90);
+    
+        System.out.println("5.Pravilo");
+        update( dp );
+end
+
+rule "Na osnovu  pozicije stana(jug) odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.stan && 
+       pozicija == Pozicija.jug )
+    then
+     
+        dp.setDebljina(78);
+
+        System.out.println("6.Pravilo");
+        update( dp );
+end
+rule "Na osnovu pozicije stana (sever) odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.stan && 
+       pozicija == Pozicija.sever )
+    then
+     
+        dp.setDebljina(90);
+       
+        System.out.println("7.Pravilo");
+        update( dp );
+end
+
+rule " Ako je debljina rama 78 ili 90 , moze samo troslojno staklo"
+no-loop true
+//salience 10
+   when
+     dp :  DrveniProzor(brojStakala != 3 && (debljina == 78 || debljina == 90))
+   then
+     
+       dp.setBrojStakala(3);
+    System.out.println("8.Pravilo");
+      update( dp );
+end
+
+rule "Na osnovu debljine izolacije(4) odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.kuca && fasada== true 
+       && debljinaIzolacije == 4)
+    then
+     
+        dp.setDebljina(68);
+       
+        System.out.println("9.Pravilo");
+        update( dp );
+end
+
+rule "Na osnovu debljine(8) izolacije odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.kuca && fasada== true 
+       && debljinaIzolacije == 8)
+    then
+     
+        dp.setDebljina(78);
+       
+        System.out.println("10.Pravilo");
+        update( dp );
+end
+
+
+
+rule "Na osnovu debljine izolacije (10) odredjujemo debljinu rama"
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( mestoZivljenja == MestoZivljenja.kuca && fasada== true 
+       && debljinaIzolacije == 10)
+    then
+     
+        dp.setDebljina(90);
+       
+        System.out.println("11.Pravilo");
+        update( dp );
+end
+
+rule "Ako mu  je grejanje centralno ili necentralizovano i zivi na primorskom podrucju dovoljno mu je debljina ramam 68 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom && ( grejanje == Grejanje.centralno || grejanje == Grejanje.necentralizovano)  )
+    then
+     
+        dp.setDebljina(68);
+       
+        System.out.println("12.Pravilo");
+        update( dp );
+end
+
+rule "Ako mu  je grejanje centralno  i zivi na planinskom  ili brdckom podrucju dovoljno mu je debljina ramam 78 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( grejanje == Grejanje.centralno && (podrucje == Podrucje.Brdskom || podrucje == Podrucje.Planinskom ))
+    then
+     
+        dp.setDebljina(78);
+       
+        System.out.println("13.Pravilo");
+        update( dp );
+end
+rule "Ako mu  je grejanje necentralizovano i zivi na planinskom podrucju ili brdckom dovoljno mu je debljina ramam 90 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( grejanje == Grejanje.necentralizovano && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom )) 
+    then
+     
+        dp.setDebljina(90);
+       
+        System.out.println("14.Pravilo");
+        update( dp );
+end
+
+
+rule "Ako mu  je grejanje necentralizovano i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 90 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( grejanje == Grejanje.necentralizovano && 
+       (podrucje == Podrucje.Ravnicarskom ) )
+    then
+     
+        dp.setDebljina(90);
+       
+        System.out.println("15.Pravilo");
+        update( dp );
+end
+rule "Ako mu  je grejanje centralno i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 78 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( grejanje == Grejanje.centralno && 
+       (podrucje == Podrucje.Ravnicarskom  ))
+    then
+     
+        dp.setDebljina(78);
+       
+        System.out.println("16.Pravilo");
+        update( dp );
+end
+rule "Ako  zivi na primorskom podrucju materijal Jela   "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom  && cena < 250 )
+    then
+     
+        dp.setMaterijal(Materijal.Jela);
+       
+        System.out.println("17.Pravilo");
+        update( dp );
+end
+rule "Ako  zivi na primorskom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
+
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena >= 250 )
+    then
+     
+       //dp.setMaterijal(null);
+        dp.setMaterijal(Materijal.Hrast);
+        System.out.println("18.Pravilo");
+        update( dp );
+end
+
+rule "Ako je osetljivost na buku i hladnocu = DA  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da")
+    then
+     
+         dp.setDebljina(90);
+       
+        System.out.println("19.Pravilo");
+        update( dp );
+end
+
+
+rule "Osetljivost na  buku  i hladnocu = Slabije  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Slabije" && osetljivostNaHladnocu == "Slabije")
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("20.Pravilo");
+        update( dp );
+end
+
+
+rule "Osetljivost na buku  i hladnocu = NE  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne")
+    then
+     
+         dp.setDebljina(68);
+       
+        System.out.println("21.Pravilo");
+        update( dp );
+end
+
+
+
+rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne    "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku != "Da" )
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("22.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na hladnocu Slabije , a  na buku razlicito od slabije  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku != "Slabije" )
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("23.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na hladnocu Ne  , a na buku razlicito od Ne "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaHladnocu == "Ne" && osetljivostNaBuku != "Ne")
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("24.Pravilo");
+        update( dp );
+end
+
+
+rule "Osetljivost na buku = DA , a na hladnocu = Slabije ili Ne    "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && ( osetljivostNaHladnocu != "Da" ))
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("25.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na buku Slabije , a  na hladnocu razlicito od slabije  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(osetljivostNaBuku == "Slabije" &&  osetljivostNaHladnocu != "Slabije" )
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("26.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na buku Ne  , a na hladnocu razlicito od Ne "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  osetljivostNaBuku == "Ne" && ( osetljivostNaHladnocu != "Ne"))
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("27.Pravilo");
+        update( dp );
+end
+
+
+rule "Ako je osetljivost na hladnocu i buku Slabija , a  mestoZivljrnja planinsko  "
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije"  && podrucje == Podrucje.Planinskom )
+    then
+     
+         dp.setDebljina(90);
+       
+        System.out.println("28.Pravilo");
+        update( dp );
+end
+
+/*rule "Ako je materijal null postavi na Hrast, Bor  ili Jela  "
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( materijal == null)
+    then
+          dp.setMaterijal(Materijal.Jela);
+          dp.setMaterijal(Materijal.Hrast);
+          dp.setMaterijal(Materijal.Bor);
+         
+       
+        System.out.println("294.Pravilo");
+        update( dp );
+end
+*/
+
+/*rule "Ako je materijal null postavi  Jela  "
+no-loop  true
+//salience 10
+    when
+       dp : DrveniProzor( materijal == null)
+    then
+     
+         // dp.setMaterijal(Materijal.Hrast);
+         // dp.setMaterijal(Materijal.Bor);
+          dp.setMaterijal(Materijal.Jela);
+       
+        System.out.println("30.Pravilo");
+        update( dp );
+end
+rule "Ako je materijal null postavi  Bor    "
+no-loop  true
+//salience 10
+    when
+       dp : DrveniProzor( materijal == null)
+    then
+     
+          //dp.setMaterijal(Materijal.Hrast);
+          dp.setMaterijal(Materijal.Bor);
+          //dp.setMaterijal(Materijal.Jela);
+       
+        System.out.println("31.Pravilo");
+        update( dp );
+end */
+rule " Ako su su dimenzije 100x120 tip Jednokrilni "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "100x120")
+    then
+     
+         dp.setTip("Jednokrilni prozor");
+       
+        System.out.println("29.Pravilo");
+        update( dp );
+end
+
+
+rule " Ako su su dimenzije 100x140 tip je Jednokrilni  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "100x140")
+    then
+     
+         dp.setTip("Jednokrilni prozor");
+       
+        System.out.println("30.Pravilo");
+        update( dp );
+end
+rule " Ako su su dimenzije 160x140 tip je Dvokrilni  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "160x140")
+    then
+     
+         dp.setTip("Dvokrilni prozor");
+       
+        System.out.println("30.Pravilo");
+        update( dp );
+end
+rule " Ako su su dimenzije 140x140 ,debljina rama 68, nema vise od 300 eura, a materijal razlicit od Hrasta, onda je tip  Jednokrilni "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "140x140" && cena <= 300 )
+    then
+     
+         dp.setTip("Jednokrilni prozor");
+       
+        System.out.println("31.Pravilo");
+        update( dp );
+end
+
+
+
+
+
+rule " Ako su su dimenzije 140x140 , a debljina rama 78, a spreman je da plati izmedju 300 i 375 eura, onda je tip  Jednokrilni "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "140x140"  && cena > 300 )
+    then
+     
+         dp.setTip("Dvokrilni prozor");
+       
+        System.out.println("32.Pravilo");
+        update( dp );
+end
+
+/*rule " Ako je tip Dvokrilni prozor debljine 68 i cene vece od 550 predlozi mu materijal Hrast "
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Dvokrilni prozor" && (debljina == 68 || debljina == 78) && cena > 550 )
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       
+        System.out.println("33.Pravilo");
+        update( dp );
+end*/
+
+/*rule "Ako je tip Jrdnokrilni prozor debljine 68 ili 78 ili 90 i cene izmedju 250 i 600 predlozi mu materijal Hrast "
+ no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( tip == "Jednokrilni prozor" && (debljina == 68 || debljina == 78 || debljina == 90) && cena >= 250 && cena <= 600 )
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       
+        System.out.println("34.Pravilo");
+        update( dp );
+end
+*/
+
+
+rule "Ako je osetljivost na buku i hladnocu = DA a podrucje Primorsko "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da" && podrucje == Podrucje.Primorskom)
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("35.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na buku  i hladnocu = NE a podrucje planinsko  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" && podrucje == Podrucje.Planinskom)
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("36.Pravilo");
+        update( dp );
+end
