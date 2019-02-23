@@ -78,7 +78,7 @@ public class DBBroker {
 				   System.out.println("Materijal je null" + upit);
 			}
 			   
-			   if(dp.getDebljina() == 0) {
+			   if(dp.getDebljina() != 0) {
 				   upit += "";
 				   System.out.println(" Debljina 90 nema za datu dimenziju "+upit);
 			  } else {
