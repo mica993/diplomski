@@ -72,10 +72,10 @@ public class DBBroker {
 		  
 			   if (dp.getMaterijal() != null )  {
 				   upit= "select * from prozori WHERE materijal = '" + dp.getMaterijal() +"' AND brojStakala = " + dp.getBrojStakala() + " AND tip= '" + dp.getTip() + "' AND dimenzija= '" + dp.getDimenzije()+ "'";/*+ "' AND cena <= " + dp.getCena();*/
-				   System.out.println("Materijal nije null" + upit );
+				   System.out.println("Materijal nije null   " + upit );
 			   } else {
 				upit= "select * from prozori WHERE brojStakala = " + dp.getBrojStakala() + " AND tip= '" + dp.getTip() + "' AND dimenzija= '" + dp.getDimenzije()+ "'";/*+ "' AND cena <= " + dp.getCena();*/
-				   System.out.println("Materijal je null" + upit);
+				   System.out.println("Materijal je null   " + upit);
 			}
 			   
 			   if(dp.getDebljina() != 0) {
