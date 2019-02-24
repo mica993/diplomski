@@ -488,11 +488,11 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je tip Dvokrilni prozor debljine 68 i cene vece od 550 predlozi mu materijal Hrast "
+/*rule " Ako je tip Dvokrilni prozor debljine 68 i cene vece od 550 predlozi mu materijal Hrast "
 no-loop true
 //salience 10
     when
-       dp : DrveniProzor(  tip == "Dvokrilni prozor" && (debljina == 68 || debljina == 78) && cena >= 550 )
+       dp : DrveniProzor(  tip == "Dvokrilni prozor" && (debljina == 68 || debljina == 78) && cena >= 700 )
     then
      
          dp.setMaterijal(Materijal.Hrast);
@@ -500,8 +500,8 @@ no-loop true
         System.out.println("33.Pravilo");
         update( dp );
 end
-
-rule "Ako je tip Jednokrilni prozor debljine 68 ili 78 ili 90 i cene izmedju 250 i 600 predlozi mu materijal Hrast "
+*/
+/*rule "Ako je tip Jednokrilni prozor debljine 68 ili 78 ili 90 i cene izmedju 250 i 600 predlozi mu materijal Hrast "
  no-loop true
 //salience 10
     when
@@ -515,7 +515,7 @@ rule "Ako je tip Jednokrilni prozor debljine 68 ili 78 ili 90 i cene izmedju 250
 end
 
 
-
+*/
 rule "Ako je osetljivost na buku i hladnocu = DA a podrucje Primorsko "
 lock-on-active true
 //salience 10
@@ -541,7 +541,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Osetlji i hladnocu = NE a podrucje planinsko  "
+rule " Ako izabere druge dimenzije setuj Tip i dimenzije na null da bi iz baze da predlozi neka rendom resenja  "
 lock-on-active true
 //salience 10
     when
