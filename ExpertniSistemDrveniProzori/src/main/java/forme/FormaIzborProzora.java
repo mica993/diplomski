@@ -141,7 +141,7 @@ public class FormaIzborProzora extends JFrame {
 	private JLabel lblLogo8;
 
 	private JTextPane textPane1;
-	private JTextPane textPane2;
+    private JTextPane textPane2;
 	private JTextPane textPane3;
 	private JTextPane textPane4;
 	private JTextPane textPane5;
@@ -442,7 +442,7 @@ public class FormaIzborProzora extends JFrame {
 		lblLogo1.setBounds(10, 448, 471, 66);
 		pozicijaStana.add(lblLogo1);
 
-		textPane2 = new JTextPane();
+		/*textPane2 = new JTextPane();
 		textPane2
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane2.setForeground(Color.WHITE);
@@ -451,7 +451,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane2.setBackground(Color.BLACK);
 		textPane2.setBounds(227, 97, 234, 76);
 		pozicijaStana.add(textPane2);
-		textPane2.setEditable(false);
+		textPane2.setEditable(false);*/
 		// 3 pitanjne
 
 		final JPanel spratnostStana = new JPanel();
@@ -630,15 +630,16 @@ public class FormaIzborProzora extends JFrame {
 		lblLogo_3.setBounds(10, 448, 465, 66);
 		panelFasadnaIzolacija.add(lblLogo_3);
 
-		textPane3 = new JTextPane();
-		textPane3.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
+	/*	textPane3 = new JTextPane();
+		textPane3
+				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane3.setForeground(Color.WHITE);
 		textPane3.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		textPane3.setEditable(false);
 		textPane3.setBackground(Color.BLACK);
 		textPane3.setBounds(227, 97, 234, 71);
 		panelFasadnaIzolacija.add(textPane3);
-		textPane3.setEditable(false);
+		textPane3.setEditable(false);*/
 
 		// 5 pitanje
 
@@ -747,7 +748,7 @@ public class FormaIzborProzora extends JFrame {
 		lblLogo_4.setBounds(10, 448, 465, 66);
 		panelDebljinaIzolacije.add(lblLogo_4);
 
-		textPane4 = new JTextPane();
+		/*textPane4 = new JTextPane();
 		textPane4
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane4.setForeground(Color.WHITE);
@@ -757,7 +758,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane4.setBounds(227, 97, 234, 76);
 		panelDebljinaIzolacije.add(textPane4);
 		textPane4.setEditable(false);
-
+*/
 		// pitanje 6
 		JPanel panelGrejanje = new JPanel();
 		panelGrejanje.setBackground(Color.BLACK);
@@ -846,7 +847,7 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogooo.setBounds(10, 448, 465, 66);
 		panelGrejanje.add(lblLogooo);
-
+/*
 		textPane5 = new JTextPane();
 		textPane5
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
@@ -856,7 +857,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane5.setBackground(Color.BLACK);
 		textPane5.setBounds(227, 97, 234, 76);
 		panelGrejanje.add(textPane5);
-		textPane5.setEditable(false);
+		textPane5.setEditable(false);*/
 
 		// pitanje 7
 
@@ -988,7 +989,7 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogo5.setBounds(10, 448, 465, 66);
 		panelKlimackoPodrucje.add(lblLogo5);
-
+/*
 		textPane6 = new JTextPane();
 		textPane6
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
@@ -998,7 +999,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane6.setBackground(Color.BLACK);
 		textPane6.setBounds(227, 97, 234, 76);
 		panelKlimackoPodrucje.add(textPane6);
-		textPane6.setEditable(false);
+		textPane6.setEditable(false);*/
 
 		// 8 pitanje
 
@@ -1109,7 +1110,7 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogo6.setBounds(10, 448, 465, 66);
 		panelBuka.add(lblLogo6);
-
+/*
 		textPane7 = new JTextPane();
 		textPane7
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
@@ -1119,7 +1120,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane7.setBackground(Color.BLACK);
 		textPane7.setBounds(227, 97, 234, 76);
 		panelBuka.add(textPane7);
-		textPane7.setEditable(false);
+		textPane7.setEditable(false);*/
 		// 9 pitanje
 
 		JPanel panelHladnoca = new JPanel();
@@ -1234,7 +1235,7 @@ public class FormaIzborProzora extends JFrame {
 		lblLogo7.setBounds(10, 448, 465, 66);
 		panelHladnoca.add(lblLogo7);
 
-		textPane8 = new JTextPane();
+	/*	textPane8 = new JTextPane();
 		textPane8
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane8.setForeground(Color.WHITE);
@@ -1244,7 +1245,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane8.setBounds(227, 97, 234, 76);
 		panelHladnoca.add(textPane8);
 		textPane8.setEditable(false);
-
+*/
 		// 10 pitanje
 
 		JPanel panelDimenzije = new JPanel();
@@ -1330,7 +1331,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje9.setVisible(true);
-				textPane9.setVisible(false);
+				//textPane9.setVisible(false);
 				txtpnUkoliko.setVisible(true);
 				// buttonNazad9.setVisible(true);
 
@@ -1399,7 +1400,7 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogo_1.setBounds(10, 448, 465, 66);
 		panelDimenzije.add(lblLogo_1);
-
+/*
 		textPane9 = new JTextPane();
 		textPane9
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
@@ -1409,10 +1410,11 @@ public class FormaIzborProzora extends JFrame {
 		textPane9.setBackground(Color.BLACK);
 		textPane9.setBounds(234, 97, 241, 76);
 		panelDimenzije.add(textPane9);
-		textPane9.setEditable(false);
-		
+		textPane9.setEditable(false);*/
+
 		txtpnUkoliko = new JTextPane();
-		txtpnUkoliko.setText(" Ukoliko \u017Eelite da znate ta\u010Dnu cenu drvenog prozora\r\n za Va\u0161u \u017Eeljenu dimenziju kontaktirajte nas putem  \r\n telefona : +38765/511-364  ili email-a : mahagoni@outlook.com\r\n Sistem \u0107e Vam predlo\u017Eiti samo koja debljina rama bi bila idealna za Va\u0161 prozor.");
+		txtpnUkoliko
+				.setText(" Ukoliko \u017Eelite da znate ta\u010Dnu cenu drvenog prozora\r\n za Va\u0161u \u017Eeljenu dimenziju kontaktirajte nas putem  \r\n telefona : +38765/511-364  ili email-a : mahagoni@outlook.com\r\n Sistem \u0107e Vam predlo\u017Eiti samo koja debljina rama bi bila idealna za Va\u0161 prozor.");
 		txtpnUkoliko.setForeground(Color.WHITE);
 		txtpnUkoliko.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		txtpnUkoliko.setEditable(false);
@@ -1421,10 +1423,9 @@ public class FormaIzborProzora extends JFrame {
 		panelDimenzije.add(txtpnUkoliko);
 		txtpnUkoliko.setEditable(false);
 		txtpnUkoliko.setVisible(false);
-		
-		
-		//11.pitanje  
-		
+
+		// 11.pitanje
+
 		JPanel panelCena = new JPanel();
 		panelCena.setBackground(Color.BLACK);
 		panelSaPitanjima.add(panelCena, CENA);
