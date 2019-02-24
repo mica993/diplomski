@@ -130,7 +130,7 @@ public class FormaResenje extends JFrame {
 					rs.getInt("cena"));
 		
 			lblNatpis.setText(dp2.ispisNaFormiIzBaze());
-			lblNatpis.setEnabled(false);
+			lblNatpis.setEditable(false);
 			byte image[];
 			image = rs.getBytes("slika");
 			ImageIcon icon = new ImageIcon(image);
@@ -193,7 +193,7 @@ public class FormaResenje extends JFrame {
 						}
 
 						lblNatpis.setText(dp2.ispisNaFormiIzBaze());
-						lblNatpis.setEnabled(false);
+						lblNatpis.setEditable(false);
 					}
 				});
 			}
