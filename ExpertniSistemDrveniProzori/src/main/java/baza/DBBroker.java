@@ -68,23 +68,31 @@ public class DBBroker {
 	   public ResultSet vrateResenja( DrveniProzor dp) {
 		   rs = null;
 		   
+		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala(); /*+ " AND cena <= " + dp.getCena();*/
 	 
 		  
 			   if (dp.getMaterijal() != null )  {
-				   upit= "select * from prozori WHERE materijal = '" + dp.getMaterijal() +"' AND brojStakala = " + dp.getBrojStakala() + " AND tip= '" + dp.getTip() + "' AND dimenzija= '" + dp.getDimenzije()+ "'";/*+ "' AND cena <= " + dp.getCena();*/
+				   upit += " AND materijal = '" + dp.getMaterijal() +"'" ;
 				   System.out.println("Materijal nije null   " + upit );
-			   } else {
-				upit= "select * from prozori WHERE brojStakala = " + dp.getBrojStakala() + " AND tip= '" + dp.getTip() + "' AND dimenzija= '" + dp.getDimenzije()+ "'";/*+ "' AND cena <= " + dp.getCena();*/
-				   System.out.println("Materijal je null   " + upit);
-			}
+			   } 
 			   
 			   if(dp.getDebljina() != 0) {
-				   upit += "";
-				   System.out.println(" Debljina 90 nema za datu dimenziju "+upit);
-			  } else {
 				   upit += " AND debljinaRama = " + dp.getDebljina();
-				   System.out.println("1 " + upit);
+				   System.out.println("Debljina 0 " + upit);
 			   }
+			   
+			   if(dp.getDimenzije() != null) {
+				   upit += " AND dimenzija = '" + dp.getDimenzije() + "'";
+				   System.out.println(" Dimenzije nisu null "+upit);
+			  }
+			   
+			   if(dp.getTip() != null) {
+				   upit +=  " AND tip= '" + dp.getTip() + "'";
+				   System.out.println(" tip nije null "+upit);
+			  }
+			   
+			   upit += " LIMIT 5";
+			   System.out.println(upit);
 			  
 			   
 			/*   if(dp.getDimenzije()== "140x140" &&  dp.getDimenzije()== "160x140"  ){
