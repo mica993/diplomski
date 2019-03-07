@@ -7,7 +7,7 @@ import java.awt.Image;
 //import javax.print.attribute.standard.JobOriginatingUserName;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 //import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -69,17 +69,16 @@ public class FormaResenje extends JFrame {
 	}
 
 	public FormaResenje(DrveniProzor dp) {
-		
-		
+
 		super("Softver za pomo\u0107 pri izboru drvenih prozora");
 		setBackground(Color.WHITE);
 		setForeground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(350, 250, 650, 600);
+		// setBounds(350, 250, 650, 600);
 		setBounds(100, 100, 650, 600);
 		setLocationRelativeTo(null);
 		this.setResizable(false);
-	
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,16 +90,17 @@ public class FormaResenje extends JFrame {
 		lblNatpis.setBounds(295, 241, 304, 196);
 		contentPane.add(lblNatpis);
 
-		lblslika = new JLabel(" Slika");
+		lblslika = new JLabel(" ");
 		lblslika.setBackground(Color.BLACK);
 		lblslika.setForeground(Color.WHITE);
-		lblslika.setBounds(10, 217, 238, 220);
+		lblslika.setBounds(10, 217, 238, 269);
 		contentPane.add(lblslika);
 
 		lblNatpis.setText("Resenje");
+		System.out.println("********Nakon izvrsenja pravila*****************");
 		System.out.println(dp);
-
-		
+		System.out.println("*************************");
+		// tekst
 
 		txtpnPogledajteDaLi = new JTextPane();
 		txtpnPogledajteDaLi.setFont(new Font("Tahoma", Font.ITALIC, 13));
@@ -111,45 +111,54 @@ public class FormaResenje extends JFrame {
 		txtpnPogledajteDaLi.setBounds(10, 497, 315, 38);
 		contentPane.add(txtpnPogledajteDaLi);
 		txtpnPogledajteDaLi.setEditable(false);
-	
+
 		// Ispis iz baze
 
 		rs = Kontroler.getInstanca().vratiResenje(dp);
 		try {
-			rs.next();
+			if (rs.next()) {
+
+				try {
+					dp2 = new DrveniProzor(rs.getString("tip"),
+							rs.getInt("debljinaRama"),
+							rs.getInt("brojStakala"),
+							rs.getString("materijal"),
+							rs.getString("dimenzija"), rs.getInt("cena"));
+
+					lblNatpis.setText(dp2.ispisNaFormiIzBaze());
+					lblNatpis.setEditable(false);
+					byte image[];
+					image = rs.getBytes("slika");
+					ImageIcon icon = new ImageIcon(image);
+					Image im = icon.getImage();
+					Image imm = im.getScaledInstance(lblslika.getWidth(),
+							lblslika.getHeight(), Image.SCALE_SMOOTH);
+					ImageIcon myImg = new ImageIcon(imm);
+					lblslika.setIcon(myImg);
+					System.out.println("*************************");
+					System.out.println(rs.toString());
+					System.out.println(dp2.ispisNaFormiIzBaze());
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Greska prikaz");
+
+					// JOptionPane.showMessageDialog(contentPane,
+					// "Nema proizvod u bazi ",
+					// "Greska", JOptionPane.ERROR_MESSAGE);
+
+				}
+				
+
+			} else {
+
+				lblNatpis.setText("Nema proizvoda u bazi");
+
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Greska baza");
 		}
-
-		try {
-			dp2 = new DrveniProzor(rs.getString("tip"),
-					rs.getInt("debljinaRama"), rs.getInt("brojStakala"),
-					rs.getString("materijal"), rs.getString("dimenzija"),
-					rs.getInt("cena"));
-		
-			lblNatpis.setText(dp2.ispisNaFormiIzBaze());
-			lblNatpis.setEditable(false);
-			byte image[];
-			image = rs.getBytes("slika");
-			ImageIcon icon = new ImageIcon(image);
-			Image im = icon.getImage();
-			Image imm = im.getScaledInstance(lblslika.getWidth(),
-					    lblslika.getHeight(), Image.SCALE_SMOOTH);
-			ImageIcon myImg = new ImageIcon(imm);
-			lblslika.setIcon(myImg);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Greska prikaz");
-			JOptionPane.showMessageDialog(contentPane, "Nema proizvod u bazi ",
-					"Greska", JOptionPane.ERROR_MESSAGE);
-
-		}
-
-		System.out.println(rs.toString());
-		System.out.println(dp2.ispisNaFormiIzBaze());
 
 		// Dugme sledeci
 
@@ -181,7 +190,7 @@ public class FormaResenje extends JFrame {
 								ImageIcon myImg = new ImageIcon(imm);
 								lblslika.setIcon(myImg);
 								btnPredhodno.setVisible(true);
-							    btnSledeci.setVisible(true);
+								btnSledeci.setVisible(true);
 								txtpnPogledajteDaLi.setVisible(true);
 							}
 
@@ -194,25 +203,24 @@ public class FormaResenje extends JFrame {
 
 						lblNatpis.setText(dp2.ispisNaFormiIzBaze());
 						lblNatpis.setEditable(false);
+						///System.out.println("*************************");
+						// System.out.println(dp2.ispisNaFormiIzBaze());
 					}
 				});
+			} else {
+				txtpnPogledajteDaLi.setVisible(false);
+				btnSledeci.setVisible(false);
+
 			}
-			 else {
-					txtpnPogledajteDaLi.setVisible(false);
-					btnSledeci.setVisible(false);
-					
-				}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		/*btnPredhodno.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-*/
+		/*
+		 * btnPredhodno.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent arg0) { } });
+		 */
 		// Dugme predhodno
-
 
 		btnPredhodno.setBackground(Color.BLACK);
 		btnPredhodno.setForeground(Color.WHITE);
@@ -243,9 +251,9 @@ public class FormaResenje extends JFrame {
 										Image.SCALE_SMOOTH);
 								ImageIcon myImg = new ImageIcon(imm);
 								lblslika.setIcon(myImg);
-							} /*else {
-								btnPredhodno.setEnabled(false);
-							}*/
+							} /*
+							 * else { btnPredhodno.setEnabled(false); }
+							 */
 
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
@@ -254,7 +262,7 @@ public class FormaResenje extends JFrame {
 						}
 
 						lblNatpis.setText(dp2.ispisNaFormiIzBaze());
-						lblNatpis.setEnabled(false);
+						lblNatpis.setEditable(false);
 					}
 
 				});
@@ -274,37 +282,36 @@ public class FormaResenje extends JFrame {
 		lblLogo.setBounds(10, 11, 472, 75);
 
 		contentPane.add(lblLogo);
-		
+
 		JLabel lblKontakt = new JLabel("KONTAKT");
 		lblKontakt.setFont(new Font("Sitka Text", Font.BOLD, 18));
 		lblKontakt.setForeground(Color.WHITE);
 		lblKontakt.setBounds(30, 97, 113, 32);
 		contentPane.add(lblKontakt);
-		
+
 		JLabel lblTelefon = new JLabel("telefon :");
 		lblTelefon.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTelefon.setForeground(Color.WHITE);
 		lblTelefon.setBounds(30, 129, 81, 22);
 		contentPane.add(lblTelefon);
-		
+
 		JLabel lblEmil = new JLabel("email :");
 		lblEmil.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblEmil.setForeground(Color.WHITE);
 		lblEmil.setBounds(40, 162, 52, 14);
 		contentPane.add(lblEmil);
-		
+
 		JLabel label = new JLabel("+387 65 / 511-364");
 		label.setFont(new Font("Tahoma", Font.BOLD, 14));
 		label.setForeground(Color.WHITE);
 		label.setBounds(121, 133, 136, 14);
 		contentPane.add(label);
-		
+
 		JLabel lblMahagonioutlookcom = new JLabel("mahagoni@outlook.com");
 		lblMahagonioutlookcom.setForeground(Color.WHITE);
 		lblMahagonioutlookcom.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblMahagonioutlookcom.setBounds(121, 153, 167, 32);
 		contentPane.add(lblMahagonioutlookcom);
-
 
 	}
 }

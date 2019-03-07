@@ -108,7 +108,7 @@ public class FormaPocetnaMain extends JFrame {
 		
 		lblLogo = new JLabel("New label");
 		lblLogo.setIcon(new ImageIcon(FormaPocetnaMain.class.getResource("/slike/logo.png")));
-		//lblLogo.setIcon(new ImageIcon("C:\\Users\\MILICA\\Desktop\\Diolomski\\logo.png"));
+	
 		lblLogo.setBounds(10, 11, 473, 66);
 		contentPane.add(lblLogo);
 

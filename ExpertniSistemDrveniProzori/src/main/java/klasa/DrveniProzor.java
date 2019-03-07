@@ -204,16 +204,21 @@ public class DrveniProzor {
 
 	public String toString() {
 
-		return "Mesto zivljenja= " + mestoZivljenja + ", \n pozicija= "
-				+ pozicija + ", \nSpratnost =" + spratnost 
+		return " Mesto zivljenja= " + mestoZivljenja 
+				+ ", \n pozicija= "+ pozicija 
+				+ ", \n Spratnost=" + spratnost 
 				+ ", \n fasada= " + fasada
 				+ " , \n debljina izolacije= " + debljinaIzolacije
-				+ ", \n grejanje= " + grejanje + ",\n osetljivost na buku= "
-				+ osetljivostNaBuku + ", \n osetljivost na hladnocu= "
-				+ osetljivostNaHladnocu + " , \n tip= " + tip
-				+ ", \n materijal= " + materijal + ", \n debljina= " + debljina
-				+ " , \n dimenzije= " + dimenzije + " , \n cena= " + cena
-			    + ", \n brojStakala= " + brojStakala + ", \n podrucije = " + podrucje;
+				+ ", \n grejanje= " + grejanje 
+				+ ",\n osetljivost na buku= "+ osetljivostNaBuku 
+				+ ", \n osetljivost na hladnocu= "+ osetljivostNaHladnocu 
+				+ " , \n tip= " + tip
+				+ ", \n materijal= " + materijal 
+				+ ", \n debljina= " + debljina
+				+ " , \n dimenzije= " + dimenzije 
+				+ " , \n cena= " + cena
+			    + ", \n brojStakala= " + brojStakala 
+			    + ", \n podrucije = " + podrucje;
 	}
 	public String ispisNaFormiIzBaze() {
 

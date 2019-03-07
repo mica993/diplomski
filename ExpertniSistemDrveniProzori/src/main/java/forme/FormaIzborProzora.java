@@ -36,6 +36,7 @@ import java.util.Hashtable;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
+
 import java.awt.Font;
 //import java.awt.SystemColor;
 
@@ -83,9 +84,9 @@ public class FormaIzborProzora extends JFrame {
 
 	private int spratnost = 18;
 	private int najvecaCena = 160;
+	
 	private String povratakSaPanelaGrejanje;
-
-	private String mestoZivljenjaS;
+    private String mestoZivljenjaS;
 	private String fasadaS;
 
 	JRadioButton rdbtnStan;
@@ -141,14 +142,14 @@ public class FormaIzborProzora extends JFrame {
 	private JLabel lblLogo8;
 
 	private JTextPane textPane1;
-    private JTextPane textPane2;
+   /* private JTextPane textPane2;
 	private JTextPane textPane3;
 	private JTextPane textPane4;
 	private JTextPane textPane5;
 	private JTextPane textPane6;
 	private JTextPane textPane7;
 	private JTextPane textPane8;
-	private JTextPane textPane9;
+	private JTextPane textPane9;*/
 	private JTextPane txtpnUkoliko;
 
 	public static void main(String[] args) {
@@ -206,16 +207,16 @@ public class FormaIzborProzora extends JFrame {
 
 		// 1 pitanje
 
-		JPanel gdeZivite = new JPanel();
-		gdeZivite.setBackground(Color.BLACK);
-		panelSaPitanjima.add(gdeZivite, MESTOZIVLJENJA);
-		gdeZivite.setLayout(null);
+		JPanel panelGdeZivite = new JPanel();
+		panelGdeZivite.setBackground(Color.BLACK);
+		panelSaPitanjima.add(panelGdeZivite, MESTOZIVLJENJA);
+		panelGdeZivite.setLayout(null);
 
 		JLabel lblPrvoPitanje = new JLabel(" Gde \u017Eivite ?");
 		lblPrvoPitanje.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblPrvoPitanje.setForeground(Color.WHITE);
 		lblPrvoPitanje.setBounds(34, 38, 369, 36);
-		gdeZivite.add(lblPrvoPitanje);
+		panelGdeZivite.add(lblPrvoPitanje);
 
 		rdbtnKuca = new JRadioButton("Ku\u0107a");
 		rdbtnKuca.setForeground(Color.WHITE);
@@ -223,7 +224,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				btnDalje.setVisible(true);
-				textPane1.setVisible(false);
+			textPane1.setVisible(false);
 
 			}
 		});
@@ -231,7 +232,7 @@ public class FormaIzborProzora extends JFrame {
 		rdbtnKuca.setBackground(new Color(255, 51, 51));
 
 		grupaMestoZivljenja.add(rdbtnKuca);
-		gdeZivite.add(rdbtnKuca);
+		panelGdeZivite.add(rdbtnKuca);
 		rdbtnKuca.setBounds(34, 97, 125, 23);
 
 		rdbtnStan = new JRadioButton("Stan");
@@ -245,7 +246,7 @@ public class FormaIzborProzora extends JFrame {
 		});
 		rdbtnStan.setBackground(new Color(255, 51, 51));
 		grupaMestoZivljenja.add(rdbtnStan);
-		gdeZivite.add(rdbtnStan);
+		panelGdeZivite.add(rdbtnStan);
 		rdbtnStan.setBounds(34, 137, 125, 23);
 
 		btnDalje = new JButton("Dalje");
@@ -280,7 +281,7 @@ public class FormaIzborProzora extends JFrame {
 			}
 		});
 		btnDalje.setBounds(372, 414, 89, 23);
-		gdeZivite.add(btnDalje);
+		panelGdeZivite.add(btnDalje);
 
 		textPane1 = new JTextPane();
 		textPane1.setBackground(Color.BLACK);
@@ -289,27 +290,27 @@ public class FormaIzborProzora extends JFrame {
 		textPane1
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane1.setBounds(227, 97, 234, 77);
-		gdeZivite.add(textPane1);
+		panelGdeZivite.add(textPane1);
 		textPane1.setEditable(false);
 
 		lblLogo = new JLabel("logo");
 		lblLogo.setIcon(new ImageIcon(FormaIzborProzora.class
 				.getResource("/slike/logo.png")));
 		lblLogo.setBounds(10, 448, 465, 66);
-		gdeZivite.add(lblLogo);
+		panelGdeZivite.add(lblLogo);
 
 		// 2 pitanje
 
-		JPanel pozicijaStana = new JPanel();
-		pozicijaStana.setBackground(Color.BLACK);
-		panelSaPitanjima.add(pozicijaStana, POZICIJASTANA);
-		pozicijaStana.setLayout(null);
+		JPanel panelPozicijaStana = new JPanel();
+		panelPozicijaStana.setBackground(Color.BLACK);
+		panelSaPitanjima.add(panelPozicijaStana, POZICIJASTANA);
+		panelPozicijaStana.setLayout(null);
 
 		JLabel lblPozicijaStana = new JLabel("Kako vam je pozicioniran stan ?");
 		lblPozicijaStana.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblPozicijaStana.setForeground(Color.WHITE);
 		lblPozicijaStana.setBounds(34, 38, 369, 36);
-		pozicijaStana.add(lblPozicijaStana);
+		panelPozicijaStana.add(lblPozicijaStana);
 
 		rdbtnIstok = new JRadioButton("Istok");
 
@@ -319,13 +320,13 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje1.setVisible(true);
 				// buttonNazad1.setVisible(true);
-				textPane2.setVisible(false);
+				//textPane2.setVisible(false);
 
 			}
 		});
 		rdbtnIstok.setBackground(new Color(255, 51, 51));
 		grupaPozicijaStana.add(rdbtnIstok);
-		pozicijaStana.add(rdbtnIstok);
+		panelPozicijaStana.add(rdbtnIstok);
 		rdbtnIstok.setBounds(34, 97, 118, 23);
 
 		rdbtnZapad = new JRadioButton("Zapad");
@@ -335,13 +336,13 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje1.setVisible(true);
 				buttonNazad1.setVisible(true);
-				textPane2.setVisible(false);
+				//textPane2.setVisible(false);
 
 			}
 		});
 		rdbtnZapad.setBackground(new Color(255, 51, 51));
 		grupaPozicijaStana.add(rdbtnZapad);
-		pozicijaStana.add(rdbtnZapad);
+		panelPozicijaStana.add(rdbtnZapad);
 
 		rdbtnZapad.setBounds(34, 137, 118, 23);
 
@@ -352,13 +353,13 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje1.setVisible(true);
 				buttonNazad1.setVisible(true);
-				textPane2.setVisible(false);
+				//textPane2.setVisible(false);
 
 			}
 		});
 		rdbtnSever.setBackground(new Color(255, 51, 51));
 		grupaPozicijaStana.add(rdbtnSever);
-		pozicijaStana.add(rdbtnSever);
+		panelPozicijaStana.add(rdbtnSever);
 
 		rdbtnSever.setBounds(34, 177, 118, 23);
 
@@ -369,13 +370,13 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje1.setVisible(true);
 				buttonNazad1.setVisible(true);
-				textPane2.setVisible(false);
+				//textPane2.setVisible(false);
 
 			}
 		});
 		rdbtnJug.setBackground(new Color(255, 51, 51));
 		grupaPozicijaStana.add(rdbtnJug);
-		pozicijaStana.add(rdbtnJug);
+		panelPozicijaStana.add(rdbtnJug);
 		rdbtnJug.setBounds(34, 217, 118, 23);
 
 		buttonDalje1 = new JButton("Dalje");
@@ -421,7 +422,7 @@ public class FormaIzborProzora extends JFrame {
 			}
 		});
 		buttonDalje1.setBounds(372, 414, 89, 23);
-		pozicijaStana.add(buttonDalje1);
+		panelPozicijaStana.add(buttonDalje1);
 
 		buttonNazad1 = new JButton("Nazad");
 		buttonNazad1.setBackground(new Color(255, 51, 51));
@@ -434,13 +435,13 @@ public class FormaIzborProzora extends JFrame {
 			}
 		});
 		buttonNazad1.setBounds(256, 414, 89, 23);
-		pozicijaStana.add(buttonNazad1);
+		panelPozicijaStana.add(buttonNazad1);
 
 		lblLogo1 = new JLabel("logoo");
 		lblLogo1.setIcon(new ImageIcon(FormaIzborProzora.class
 				.getResource("/slike/logo.png")));
 		lblLogo1.setBounds(10, 448, 471, 66);
-		pozicijaStana.add(lblLogo1);
+		panelPozicijaStana.add(lblLogo1);
 
 		/*textPane2 = new JTextPane();
 		textPane2
@@ -454,34 +455,33 @@ public class FormaIzborProzora extends JFrame {
 		textPane2.setEditable(false);*/
 		// 3 pitanjne
 
-		final JPanel spratnostStana = new JPanel();
-		spratnostStana.setBackground(Color.BLACK);
-		panelSaPitanjima.add(spratnostStana, SPRATNOST);
-		spratnostStana.setLayout(null);
+		final JPanel pabelSpratnostStana = new JPanel();
+		pabelSpratnostStana.setBackground(Color.BLACK);
+		panelSaPitanjima.add(pabelSpratnostStana, SPRATNOST);
+		pabelSpratnostStana.setLayout(null);
 
-		JLabel lblSpratnost = new JLabel("Koja je spratnost stana ?");
-		lblSpratnost.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSpratnost.setForeground(Color.WHITE);
-		lblSpratnost.setBackground(Color.GRAY);
-		lblSpratnost.setBounds(34, 38, 369, 36);
-		spratnostStana.add(lblSpratnost);
+		JLabel lblKojaJeSpratnost = new JLabel("Koja je spratnost stana ?");
+		lblKojaJeSpratnost.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblKojaJeSpratnost.setForeground(Color.WHITE);
+		lblKojaJeSpratnost.setBackground(Color.GRAY);
+		lblKojaJeSpratnost.setBounds(34, 38, 369, 36);
+		pabelSpratnostStana.add(lblKojaJeSpratnost);
 
 		final JLabel labelSpratnost = new JLabel("18");
 		labelSpratnost.setForeground(Color.WHITE);
 
 		labelSpratnost.setBounds(225, 185, 46, 14);
-		spratnostStana.add(labelSpratnost);
+		pabelSpratnostStana.add(labelSpratnost);
 
 		final JSlider sliderStan = new JSlider(-1, 35, 18);
 		sliderStan.setBackground(Color.BLACK);
 		sliderStan.setForeground(Color.WHITE);
 		sliderStan.setBounds(34, 110, 406, 26);
-		spratnostStana.add(sliderStan);
+		pabelSpratnostStana.add(sliderStan);
 
 		Hashtable<Integer, JLabel> ispisSpratnosti = new Hashtable<Integer, JLabel>();
 		ispisSpratnosti.put(new Integer(-1), new JLabel("-1"));
-
-		ispisSpratnosti.put(new Integer(5), new JLabel("5"));
+        ispisSpratnosti.put(new Integer(5),  new JLabel("5"));
 		ispisSpratnosti.put(new Integer(10), new JLabel("10"));
 		ispisSpratnosti.put(new Integer(15), new JLabel("15"));
 		ispisSpratnosti.put(new Integer(20), new JLabel("20"));
@@ -512,7 +512,7 @@ public class FormaIzborProzora extends JFrame {
 
 		});
 		buttonDalje2.setBounds(372, 414, 89, 23);
-		spratnostStana.add(buttonDalje2);
+		pabelSpratnostStana.add(buttonDalje2);
 
 		JButton buttonNazad2 = new JButton("Nazad");
 		buttonNazad2.setBackground(new Color(255, 51, 51));
@@ -524,13 +524,13 @@ public class FormaIzborProzora extends JFrame {
 			}
 		});
 		buttonNazad2.setBounds(256, 414, 89, 23);
-		spratnostStana.add(buttonNazad2);
+		pabelSpratnostStana.add(buttonNazad2);
 
 		lblLogo_2 = new JLabel("logo3");
 		lblLogo_2.setIcon(new ImageIcon(FormaIzborProzora.class
 				.getResource("/slike/logo.png")));
 		lblLogo_2.setBounds(10, 448, 465, 66);
-		spratnostStana.add(lblLogo_2);
+		pabelSpratnostStana.add(lblLogo_2);
 
 		// 4.pitanje
 
@@ -551,8 +551,8 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje3.setVisible(true);
-				// buttonNazad3.setVisible(true);
-				textPane3.setVisible(false);
+				 buttonNazad3.setVisible(true);
+				//textPane3.setVisible(false);
 
 			}
 		});
@@ -567,9 +567,9 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje3.setVisible(true);
-				textPane3.setVisible(false);
+				//textPane3.setVisible(false);
 
-				// buttonNazad3.setVisible(true);
+				buttonNazad3.setVisible(true);
 
 			}
 		});
@@ -660,8 +660,8 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje4.setVisible(true);
-				textPane4.setVisible(false);
-				// btnNazad4.setVisible(true);
+				//textPane4.setVisible(false);
+				 btnNazad4.setVisible(true);
 
 			}
 		});
@@ -676,8 +676,8 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje4.setVisible(true);
-				textPane4.setVisible(false);
-				// btnNazad4.setVisible(true);
+				//textPane4.setVisible(false);
+				 btnNazad4.setVisible(true);
 
 			}
 		});
@@ -693,7 +693,7 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje4.setVisible(true);
 				// btnNazad4.setVisible(true);
-				textPane4.setVisible(false);
+				///textPane4.setVisible(false);
 
 			}
 		});
@@ -778,7 +778,7 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje5.setVisible(true);
 				// buttonNazad5.setVisible(true);
-				textPane5.setVisible(false);
+				//textPane5.setVisible(false);
 
 			}
 		});
@@ -794,7 +794,7 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDalje5.setVisible(true);
 				// buttonNazad5.setVisible(true);
-				textPane5.setVisible(false);
+				//textPane5.setVisible(false);
 
 			}
 		});
@@ -879,7 +879,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje6.setVisible(true);
-				textPane6.setVisible(false);
+				//textPane6.setVisible(false);
 				// buttonNazad6.setVisible(true);
 
 			}
@@ -894,7 +894,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje6.setVisible(true);
-				textPane6.setVisible(false);
+				//textPane6.setVisible(false);
 				// buttonNazad6.setVisible(true);
 
 			}
@@ -911,7 +911,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje6.setVisible(true);
-				textPane6.setVisible(false);
+				//textPane6.setVisible(false);
 				// buttonNazad6.setVisible(true);
 
 			}
@@ -927,7 +927,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje6.setVisible(true);
-				textPane6.setVisible(false);
+				//textPane6.setVisible(false);
 				// buttonNazad6.setVisible(true);
 
 			}
@@ -1020,7 +1020,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDaljee7.setVisible(true);
-				textPane7.setVisible(false);
+				//textPane7.setVisible(false);
 				// buttonNazad7.setVisible(true);
 
 			}
@@ -1037,7 +1037,7 @@ public class FormaIzborProzora extends JFrame {
 
 				buttonDaljee7.setVisible(true);
 				// buttonNazad7.setVisible(true);
-				textPane7.setVisible(false);
+				//textPane7.setVisible(false);
 
 			}
 		});
@@ -1052,7 +1052,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDaljee7.setVisible(true);
-				textPane7.setVisible(false);
+			//	textPane7.setVisible(false);
 
 				// buttonNazad7.setVisible(true);
 
@@ -1141,7 +1141,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje8.setVisible(true);
-				textPane8.setVisible(false);
+				//textPane8.setVisible(false);
 
 				// buttonNazad8.setVisible(true);
 
@@ -1158,7 +1158,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje8.setVisible(true);
-				textPane8.setVisible(false);
+				///textPane8.setVisible(false);
 
 				// buttonNazad8.setVisible(true);
 
@@ -1175,7 +1175,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje8.setVisible(true);
-				textPane8.setVisible(false);
+				//textPane8.setVisible(false);
 
 				// buttonNazad8.setVisible(true);
 
@@ -1266,7 +1266,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje9.setVisible(true);
-				textPane9.setVisible(false);
+				//textPane9.setVisible(false);
 
 				// buttonNazad9.setVisible(true);
 
@@ -1283,7 +1283,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje9.setVisible(true);
-				textPane9.setVisible(false);
+				//textPane9.setVisible(false);
 				// buttonNazad9.setVisible(true);
 
 			}
@@ -1299,7 +1299,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje9.setVisible(true);
-				textPane9.setVisible(false);
+				//textPane9.setVisible(false);
 				// buttonNazad9.setVisible(true);
 
 			}
@@ -1315,7 +1315,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				buttonDalje9.setVisible(true);
-				textPane9.setVisible(false);
+				//textPane9.setVisible(false);
 				// buttonNazad9.setVisible(true);
 
 			}
@@ -1438,17 +1438,21 @@ public class FormaIzborProzora extends JFrame {
 		lblKolikoNovcaSte.setBounds(34, 38, 369, 36);
 		panelCena.add(lblKolikoNovcaSte);
 
-		final JSlider sliderCena = new JSlider(160, 700, 160);
+
+		labelCena = new JLabel("160 \u20ac");
+		labelCena.setForeground(Color.WHITE);
+		labelCena.setBounds(217, 202, 46, 14);
+		panelCena.add(labelCena);
+		
+		final JSlider sliderCena = new JSlider(160, 800, 160);
 		sliderCena.setForeground(Color.WHITE);
 		sliderCena.setBackground(Color.BLACK);
-
-		sliderCena.setBounds(34, 110, 406, 26);
+        sliderCena.setBounds(34, 110, 406, 57);
 		panelCena.add(sliderCena);
 
 		Hashtable<Integer, JLabel> ispisCene = new Hashtable<Integer, JLabel>();
 		ispisCene.put(new Integer(160), new JLabel("160"));
-
-		ispisCene.put(new Integer(200), new JLabel("200"));
+        ispisCene.put(new Integer(200), new JLabel("200"));
 		ispisCene.put(new Integer(250), new JLabel("250"));
 		ispisCene.put(new Integer(300), new JLabel("300"));
 		ispisCene.put(new Integer(350), new JLabel("350"));
@@ -1459,9 +1463,15 @@ public class FormaIzborProzora extends JFrame {
 		ispisCene.put(new Integer(600), new JLabel("600"));
 		ispisCene.put(new Integer(650), new JLabel("650"));
 		ispisCene.put(new Integer(700), new JLabel("700"));
+		ispisCene.put(new Integer(750), new JLabel("750"));
+		ispisCene.put(new Integer(800), new JLabel("800"));
 		sliderCena.setLabelTable(ispisCene);
+		sliderCena.setMajorTickSpacing(160);
+		sliderCena.setMinorTickSpacing(5);
 		sliderCena.setPaintLabels(true);
-		sliderCena.setSnapToTicks(false);
+		sliderCena.setSnapToTicks(true);
+		sliderCena.setPaintTicks(true);
+		
 
 		sliderCena.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -1472,15 +1482,17 @@ public class FormaIzborProzora extends JFrame {
 
 			}
 		});
-
+	
 		JButton btnZavrsi = new JButton("Zavr\u0161i");
 		btnZavrsi.setForeground(Color.WHITE);
 		btnZavrsi.setBackground(new Color(255, 51, 51));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dp.setCena(najvecaCena);
-
+				System.out.println("*************************");
 				System.out.println(dp.toString());
+				System.out.println("*************************");
+				
 
 				dispose();
 
@@ -1505,10 +1517,6 @@ public class FormaIzborProzora extends JFrame {
 		lblLogo8.setBounds(10, 448, 465, 66);
 		panelCena.add(lblLogo8);
 
-		labelCena = new JLabel("160 \u20ac");
-		labelCena.setForeground(Color.WHITE);
-		labelCena.setBounds(217, 171, 46, 14);
-		panelCena.add(labelCena);
 
 	}
 

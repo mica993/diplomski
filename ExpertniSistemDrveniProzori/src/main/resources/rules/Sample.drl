@@ -222,7 +222,7 @@ rule "Ako  zivi na primorskom podrucju materijal Jela   "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom  && cena < 250 )
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom  && cena <= 425 )
     then
      
         dp.setMaterijal(Materijal.Jela);
@@ -235,7 +235,7 @@ rule "Ako  zivi na primorskom podrucju i spreman je da potrosi vise od 250 eura 
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena >= 250 )
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena > 500  &&  cena <= 800 )
     then
      
        //dp.setMaterijal(null);
@@ -243,7 +243,36 @@ lock-on-active true
         System.out.println("18.Pravilo");
         update( dp );
 end
+/*
+rule "Ako  zivi na primorsk nnnom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
 
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && dimenzije == "100x140" && cena < 500  &&  cena >= 350 )
+    then
+     
+       //dp.setMaterijal(null);
+        dp.setMaterijal(Materijal.Hrast);
+        System.out.println("6666.Pravilo");
+        update( dp );
+end
+rule "Ako  zivi na primorsvbbk nnnom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
+
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && dimenzije == "100x120" && cena <= 250  &&  cena < 425 )
+    then
+     
+       //dp.setMaterijal(null);
+        dp.setMaterijal(Materijal.Hrast);
+        System.out.println("65555.Pravilo");
+        update( dp );
+end
+*/
 rule "Ako je osetljivost na buku i hladnocu = DA  "
 lock-on-active true
 //salience 10
@@ -376,6 +405,30 @@ no-loop true
         update( dp );
 end
 
+rule "Ako je osetljivost na buku i hladnocu = DA a podrucje Primorsko "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da" && podrucje == Podrucje.Primorskom)
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("29.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na buku  i hladnocu = NE a podrucje planinsko  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom))
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("30.Pravilo");
+        update( dp );
+end
 /*rule "Ako je materijal null postavi na Hrast, Bor  ili Jela  "
 no-loop true
 //salience 10
@@ -429,7 +482,7 @@ lock-on-active true
      
          dp.setTip("Jednokrilni prozor");
        
-        System.out.println("29.Pravilo");
+        System.out.println("31.Pravilo");
         update( dp );
 end
 
@@ -443,7 +496,7 @@ lock-on-active true
      
          dp.setTip("Jednokrilni prozor");
        
-        System.out.println("30.Pravilo");
+        System.out.println("32.Pravilo");
         update( dp );
 end
 rule " Ako su su dimenzije 160x140 tip je Dvokrilni  "
@@ -455,91 +508,100 @@ lock-on-active true
      
          dp.setTip("Dvokrilni prozor");
        
-        System.out.println("30.Pravilo");
-        update( dp );
-end
-rule " Ako su su dimenzije 140x140 ,debljina rama 68, nema vise od 300 eura, a materijal razlicit od Hrasta, onda je tip  Jednokrilni "
-lock-on-active true
-//salience 10
-    when
-       dp : DrveniProzor(  dimenzije == "140x140" && cena <= 300 )
-    then
-     
-         dp.setTip("Jednokrilni prozor");
-       
-        System.out.println("31.Pravilo");
-        update( dp );
-end
-
-
-
-
-
-rule " Ako su su dimenzije 140x140 , a debljina rama 78, a spreman je da plati izmedju 300 i 375 eura, onda je tip  Jednokrilni "
-lock-on-active true
-//salience 10
-    when
-       dp : DrveniProzor(  dimenzije == "140x140"  && cena > 300 )
-    then
-     
-         dp.setTip("Dvokrilni prozor");
-       
-        System.out.println("32.Pravilo");
-        update( dp );
-end
-
-/*rule " Ako je tip Dvokrilni prozor debljine 68 i cene vece od 550 predlozi mu materijal Hrast "
-no-loop true
-//salience 10
-    when
-       dp : DrveniProzor(  tip == "Dvokrilni prozor" && (debljina == 68 || debljina == 78) && cena >= 700 )
-    then
-     
-         dp.setMaterijal(Materijal.Hrast);
-       //dp.setCena(cena);
         System.out.println("33.Pravilo");
         update( dp );
 end
-*/
-/*rule "Ako je tip Jednokrilni prozor debljine 68 ili 78 ili 90 i cene izmedju 250 i 600 predlozi mu materijal Hrast "
- no-loop true
+/*
+rule " Ako su su dimenzije 140x140 , cena<500 eura, onda je tip  Jednokrilni "
+lock-on-active true
+//no-loop true
 //salience 10
     when
-       dp : DrveniProzor( tip == "Jednokrilni prozor" && (debljina == 68 || debljina == 78 || debljina == 90) && cena >= 250 && cena <= 600 )
+       dp : DrveniProzor(  dimenzije == "140x140" && cena >=300 &&  cena <=600  )
     then
      
-         dp.setMaterijal(Materijal.Hrast);
+         dp.setTip("Jednokrilni prozor");
        
         System.out.println("34.Pravilo");
         update( dp );
 end
 
-
 */
-rule "Ako je osetljivost na buku i hladnocu = DA a podrucje Primorsko "
+
+
+
+/*rule " Ako su su dimenzije 140x140 , a spreman je da plati eura, onda je tip  Dvokrilni "
 lock-on-active true
+//no-loop true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da" && podrucje == Podrucje.Primorskom)
+       dp : DrveniProzor(  dimenzije == "140x140"   &&  cena >=350 &&  cena <=650 )
     then
      
-         dp.setDebljina(78);
+         dp.setTip("Dvokrilni prozor");
        
         System.out.println("35.Pravilo");
         update( dp );
-end
-rule "Osetljivost na buku  i hladnocu = NE a podrucje planinsko  "
+end*/
+/*
+rule " Ako su su dimenzije 140x140 ,debljina rama 78, nema vise od 600 eura,, onda je tip  Jednokrilni "
 lock-on-active true
+//no-loop true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" && podrucje == Podrucje.Planinskom)
+       dp : DrveniProzor(  dimenzije == "140x140" && cena <= 600 && debljina == 78 )
     then
      
-         dp.setDebljina(78);
+         dp.setTip("Jednokrilni prozor");
        
         System.out.println("36.Pravilo");
         update( dp );
 end
+
+rule " Ako su su dimenzije 140x140 , a debljina rama 78, a nema vise od 650, onda je tip  Dvokrilni "
+lock-on-active true
+//no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije == "140x140"   &&  cena <=650 && debljina == 78 )
+    then
+     
+         dp.setTip("Dvokrilni prozor");
+       
+        System.out.println("37.Pravilo");
+        update( dp );
+end*/
+
+rule " Ako je tip Dvokrilni prozor debljine 78 i cene vece od 550 predlozi mu materijal Hrast "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Jednokrilni prozor" &&  debljina == 78 && (cena == 350 ||( cena >= 425 && cena <= 800)))
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       //dp.setCena(cena);
+        System.out.println("38.Pravilo");
+        update( dp );
+end
+
+
+rule " Ako je tip Dvokrilni prozor debljine  78 i cene vece od 425 predlozi mu materijal Hrast "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Dvokrilni prozor" && debljina == 78 &&  (cena  >= 425 && cena <=800 ) )             
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       //dp.setCena(cena);
+        System.out.println("39.Pravilo");
+        update( dp );
+end
+
+
 
 rule " Ako izabere druge dimenzije setuj Tip i dimenzije na null da bi iz baze da predlozi neka rendom resenja  "
 lock-on-active true
@@ -551,6 +613,48 @@ lock-on-active true
          dp.setTip(null);
          dp.setDimenzije(null);
        
-        System.out.println("37.Pravilo");
+        System.out.println("40.Pravilo");
         update( dp );
 end
+rule " Ako je tip Jednokrilni  debljine 90 i cene vece od 375  a manja 420 predlozi mu materijal Hrast "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Jednokrilni prozor" && debljina == 90 &&  cena  >= 375 && cena <=420 )           
+    then 
+     
+         dp.setMaterijal(Materijal.Hrast);
+       //dp.setCena(cena);
+        System.out.println("41.Pravilo");
+        update( dp );
+end
+
+
+rule " Ako je tip Jednokrilni prozor debljine 68  i cene =250, >350 , <800predlozi mu materijal Hrast "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Jednokrilni prozor" && debljina == 68   && (cena  == 250 ||(cena >=350 && cena <=800)) )           
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       //dp.setCena(cena);
+        System.out.println("42.Pravilo");
+        update( dp );
+end
+rule " Ako je tip Dvokrilni prozor debljine  68 i cene vece od 550 predlozi mu materijal Hrast "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  tip == "Dvokrilni prozor" && debljina == 68 &&  (cena  >= 550 && cena <=800 ) )             
+    then
+     
+         dp.setMaterijal(Materijal.Hrast);
+       //dp.setCena(cena);
+        System.out.println("43.Pravilo");
+        update( dp );
+end
+

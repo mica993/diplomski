@@ -68,7 +68,7 @@ public class DBBroker {
 	   public ResultSet vrateResenja( DrveniProzor dp) {
 		   rs = null;
 		   
-		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala(); /*+ " AND cena <= " + dp.getCena();*/
+		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala()+ " AND cena <= " + dp.getCena();
 	 
 		  
 			   if (dp.getMaterijal() != null )  {
@@ -87,6 +87,10 @@ public class DBBroker {
 			  }
 			   
 			   if(dp.getTip() != null) {
+				   upit +=  " AND tip= '" + dp.getTip() + "'";
+				   System.out.println(" tip nije null "+upit);
+			  }
+			   if(dp.getCena() == 0) {
 				   upit +=  " AND tip= '" + dp.getTip() + "'";
 				   System.out.println(" tip nije null "+upit);
 			  }
