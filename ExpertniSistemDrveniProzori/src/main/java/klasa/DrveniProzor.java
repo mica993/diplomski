@@ -1,5 +1,7 @@
 package klasa;
 
+//import java.util.ArrayList;
+
 public class DrveniProzor {
 	public enum MestoZivljenja {
 		kuca, stan
@@ -36,9 +38,11 @@ public class DrveniProzor {
 	private Grejanje grejanje;
 	private String osetljivostNaBuku;
 	private String osetljivostNaHladnocu;
+	private boolean blizinaUlice;
 	
 	// baza
 	private String tip;
+	//private ArrayList<Materijal> m;
 	private Materijal materijal;
 	private int debljina;
 	private int cena;
@@ -48,7 +52,7 @@ public class DrveniProzor {
 	public DrveniProzor(MestoZivljenja mestoZivljenja, Pozicija pozicija,
 			int spratnost, boolean fasada, double debljinaIzolacije,
 			Grejanje grejanje, String osetljivostNaBuku,
-			String osetljivostNaHladnocu, int cena, Materijal materijal,
+			String osetljivostNaHladnocu, boolean blizinaUlice, int cena, Materijal materijal,
 			int debljina, String tip, String dimenzije,int brojStakala, Podrucje podrucje) {
 		super();
 		this.podrucje= podrucje;
@@ -66,6 +70,7 @@ public class DrveniProzor {
 		this.tip=tip;
 		this.brojStakala= brojStakala;
 		this.debljina=debljina;
+		this.blizinaUlice= blizinaUlice;
 	}
 	
 	public DrveniProzor(String tip, int dRama, int brStalaka, String materijal, String dim, int cena) {
@@ -78,6 +83,7 @@ public class DrveniProzor {
 	}
 
 	public DrveniProzor() {
+	
 		super();
 	}
 
@@ -143,6 +149,18 @@ public class DrveniProzor {
 
 	public void setOsetljivostNaHladnocu(String osetljivostNaHladnocu) {
 		this.osetljivostNaHladnocu = osetljivostNaHladnocu;
+	}
+
+	public boolean getBlizinaUlice() {
+		return blizinaUlice;
+	}
+
+	public void setBlizinaUlice(boolean blizinaUlice) {
+		this.blizinaUlice = blizinaUlice;
+	}
+
+	public void setSpratnost(int spratnost) {
+		this.spratnost = spratnost;
 	}
 
 	public int getCena() {
@@ -212,6 +230,7 @@ public class DrveniProzor {
 				+ ", \n grejanje= " + grejanje 
 				+ ",\n osetljivost na buku= "+ osetljivostNaBuku 
 				+ ", \n osetljivost na hladnocu= "+ osetljivostNaHladnocu 
+				+ ", \n blizina ulice= "+ blizinaUlice 
 				+ " , \n tip= " + tip
 				+ ", \n materijal= " + materijal 
 				+ ", \n debljina= " + debljina

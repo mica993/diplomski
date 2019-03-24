@@ -222,20 +222,21 @@ rule "Ako  zivi na primorskom podrucju materijal Jela   "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom  && cena <= 425 )
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   )
     then
      
-        dp.setMaterijal(Materijal.Jela);
+        dp.setMaterijal(null);
        
         System.out.println("17.Pravilo");
         update( dp );
 end
+/*
 rule "Ako  zivi na primorskom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
 
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena > 500  &&  cena <= 800 )
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena > 425  &&  cena <= 800 )
     then
      
        //dp.setMaterijal(null);
@@ -243,6 +244,7 @@ lock-on-active true
         System.out.println("18.Pravilo");
         update( dp );
 end
+*/
 /*
 rule "Ako  zivi na primorsk nnnom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
 
@@ -277,7 +279,7 @@ rule "Ako je osetljivost na buku i hladnocu = DA  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da")
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da"  && blizinaUlice == true)
     then
      
          dp.setDebljina(90);
@@ -305,7 +307,7 @@ rule "Osetljivost na buku  i hladnocu = NE  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne")
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne"    && blizinaUlice == false)
     then
      
          dp.setDebljina(68);
@@ -429,50 +431,11 @@ lock-on-active true
         System.out.println("30.Pravilo");
         update( dp );
 end
-/*rule "Ako je materijal null postavi na Hrast, Bor  ili Jela  "
-no-loop true
-//salience 10
-    when
-       dp : DrveniProzor( materijal == null)
-    then
-          dp.setMaterijal(Materijal.Jela);
-          dp.setMaterijal(Materijal.Hrast);
-          dp.setMaterijal(Materijal.Bor);
-         
-       
-        System.out.println("294.Pravilo");
-        update( dp );
-end
-*/
 
-/*rule "Ako je materijal null postavi  Jela  "
-no-loop  true
-//salience 10
-    when
-       dp : DrveniProzor( materijal == null)
-    then
+
+
      
-         // dp.setMaterijal(Materijal.Hrast);
-         // dp.setMaterijal(Materijal.Bor);
-          dp.setMaterijal(Materijal.Jela);
-       
-        System.out.println("30.Pravilo");
-        update( dp );
-end
-rule "Ako je materijal null postavi  Bor    "
-no-loop  true
-//salience 10
-    when
-       dp : DrveniProzor( materijal == null)
-    then
-     
-          //dp.setMaterijal(Materijal.Hrast);
-          dp.setMaterijal(Materijal.Bor);
-          //dp.setMaterijal(Materijal.Jela);
-       
-        System.out.println("31.Pravilo");
-        update( dp );
-end */
+
 rule " Ako su su dimenzije 100x120 tip Jednokrilni "
 lock-on-active true
 //salience 10
@@ -526,9 +489,9 @@ lock-on-active true
         update( dp );
 end
 
+
+
 */
-
-
 
 /*rule " Ako su su dimenzije 140x140 , a spreman je da plati eura, onda je tip  Dvokrilni "
 lock-on-active true
@@ -572,7 +535,7 @@ lock-on-active true
         update( dp );
 end*/
 
-rule " Ako je tip Dvokrilni prozor debljine 78 i cene vece od 550 predlozi mu materijal Hrast "
+rule " Ako je tip Jednokrilni prozor debljine 78 i cene=350 || cena>=425  cena <800 onda je materijal Hrast "
 //lock-on-active true
 no-loop true
 //salience 10
@@ -582,12 +545,12 @@ no-loop true
      
          dp.setMaterijal(Materijal.Hrast);
        //dp.setCena(cena);
-        System.out.println("38.Pravilo");
+        System.out.println("34.Pravilo");
         update( dp );
 end
 
 
-rule " Ako je tip Dvokrilni prozor debljine  78 i cene vece od 425 predlozi mu materijal Hrast "
+rule " Ako je tip Dvokrilni prozor debljine  78 i cene vece od 425 predlozi onda je materijal Hrast "
 //lock-on-active true
 no-loop true
 //salience 10
@@ -597,7 +560,7 @@ no-loop true
      
          dp.setMaterijal(Materijal.Hrast);
        //dp.setCena(cena);
-        System.out.println("39.Pravilo");
+        System.out.println("35.Pravilo");
         update( dp );
 end
 
@@ -613,7 +576,7 @@ lock-on-active true
          dp.setTip(null);
          dp.setDimenzije(null);
        
-        System.out.println("40.Pravilo");
+        System.out.println("36.Pravilo");
         update( dp );
 end
 rule " Ako je tip Jednokrilni  debljine 90 i cene vece od 375  a manja 420 predlozi mu materijal Hrast "
@@ -626,7 +589,7 @@ no-loop true
      
          dp.setMaterijal(Materijal.Hrast);
        //dp.setCena(cena);
-        System.out.println("41.Pravilo");
+        System.out.println("37.Pravilo");
         update( dp );
 end
 
@@ -641,7 +604,7 @@ no-loop true
      
          dp.setMaterijal(Materijal.Hrast);
        //dp.setCena(cena);
-        System.out.println("42.Pravilo");
+        System.out.println("38.Pravilo");
         update( dp );
 end
 rule " Ako je tip Dvokrilni prozor debljine  68 i cene vece od 550 predlozi mu materijal Hrast "
@@ -654,7 +617,32 @@ no-loop true
      
          dp.setMaterijal(Materijal.Hrast);
        //dp.setCena(cena);
-        System.out.println("43.Pravilo");
+        System.out.println("39.Pravilo");
         update( dp );
 end
 
+rule "Ako je osetljivost  buku i hladnocu = DA a blizina ulice = true "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" &&  blizinaUlice == true )
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("40.Pravilo");
+        update( dp );
+end
+rule " Ako su su dimenzije razlicite 120x120 "
+//lock-on-active true
+no-loop true
+//salience 10
+    when
+       dp : DrveniProzor(  dimenzije != "100x120" && debljina == 90 )
+    then
+     
+    dp.setDebljina(0);
+       
+        System.out.println("41.Pravilo");
+        update( dp );
+end

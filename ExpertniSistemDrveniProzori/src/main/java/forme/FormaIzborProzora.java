@@ -67,6 +67,8 @@ public class FormaIzborProzora extends JFrame {
 	private JButton buttonNazad8;
 	private JButton buttonDalje9;
 	private JButton buttonNazad9;
+	private JButton btnDalje_Blizina;
+	private JButton buttonNazadBlizina ;
 
 	final static String MESTOZIVLJENJA = "Mesto zivljenja";
 	final static String POZICIJASTANA = " Pozicioniranost stana";
@@ -77,9 +79,9 @@ public class FormaIzborProzora extends JFrame {
 	final static String KLIMA = "Kakva  je klima";
 	final static String BUKA = "Osetljivost na buku";
 	final static String HLADNOCA = "Osjetljivost na hladnocu";
+	final static String BlizinaUlice = "Blizina glavne ulice";
 	final static String DIMENZIJE = "Dimenzije";
 	final static String CENA = "Cena drvenih prozora";
-	final static String UDALJENOSTTV = "Udaljenost od ekrana";
 	final static String UREDJAJI = "Dodatni ure\u0111aji";
 
 	private int spratnost = 18;
@@ -117,16 +119,20 @@ public class FormaIzborProzora extends JFrame {
 	JRadioButton rdbtn140x140;
 	JRadioButton rdbtn160x140;
 	JRadioButton rdbtnDruge;
+	JRadioButton radioButtonNEBl ;
+	JRadioButton radioButtonDABl;
 
 	private final ButtonGroup grupaDimenzije = new ButtonGroup();
 	private final ButtonGroup grupaHladnoca = new ButtonGroup();
 	private final ButtonGroup grupaBuka = new ButtonGroup();
+	private final ButtonGroup grupaBlizina = new ButtonGroup();
 	private final ButtonGroup grupaKlima = new ButtonGroup();
 	private final ButtonGroup grupaGrejanje = new ButtonGroup();
 	private final ButtonGroup grupaDebljina = new ButtonGroup();
 	private final ButtonGroup grupaFasada = new ButtonGroup();
 	private final ButtonGroup grupaMestoZivljenja = new ButtonGroup();
 	private final ButtonGroup grupaPozicijaStana = new ButtonGroup();
+	
 
 	public boolean closed;
 	private JLabel lblLogo;
@@ -151,6 +157,8 @@ public class FormaIzborProzora extends JFrame {
 	private JTextPane textPane8;
 	private JTextPane textPane9;*/
 	private JTextPane txtpnUkoliko;
+	private JPanel panelBlizinaUlice;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -1043,7 +1051,7 @@ public class FormaIzborProzora extends JFrame {
 		});
 		rdbtnBukaNe.setForeground(Color.WHITE);
 		grupaBuka.add(rdbtnBukaNe);
-		rdbtnBukaNe.setBounds(34, 137, 125, 23);
+		rdbtnBukaNe.setBounds(34, 177, 125, 23);
 		panelBuka.add(rdbtnBukaNe);
 
 		rdbtnBukaSlabije = new JRadioButton("Slabije");
@@ -1060,7 +1068,7 @@ public class FormaIzborProzora extends JFrame {
 		});
 		rdbtnBukaSlabije.setBackground(new Color(255, 51, 51));
 		grupaBuka.add(rdbtnBukaSlabije);
-		rdbtnBukaSlabije.setBounds(34, 177, 125, 23);
+		rdbtnBukaSlabije.setBounds(34, 137, 125, 23);
 		panelBuka.add(rdbtnBukaSlabije);
 
 		buttonDaljee7 = new JButton("Dalje");
@@ -1069,13 +1077,13 @@ public class FormaIzborProzora extends JFrame {
 		buttonDaljee7.setForeground(Color.WHITE);
 		buttonDaljee7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dp.setOsetljivostNaBuku(oserljivostNaBuku());
+				dp.setOsetljivostNaBuku(osetljivostNaBuku());
 
 				cl.show(panelSaPitanjima, HLADNOCA);
 
 			}
 
-			private String oserljivostNaBuku() {
+			private String osetljivostNaBuku() {
 				if (rdbtnBukaDa.isSelected()) {
 					return "Da";
 
@@ -1194,7 +1202,7 @@ public class FormaIzborProzora extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dp.setOsetljivostNaHladnocu(osetljivostNaHladnocu());
 
-				cl.show(panelSaPitanjima, DIMENZIJE);
+				cl.show(panelSaPitanjima, BlizinaUlice);
 
 			}
 
@@ -1246,6 +1254,94 @@ public class FormaIzborProzora extends JFrame {
 		panelHladnoca.add(textPane8);
 		textPane8.setEditable(false);
 */
+		//12
+		
+		panelBlizinaUlice = new JPanel();
+		panelBlizinaUlice.setForeground(Color.BLACK);
+		panelBlizinaUlice.setBackground(Color.BLACK);
+		panelSaPitanjima.add(panelBlizinaUlice, BlizinaUlice);
+
+		panelBlizinaUlice.setLayout(null);
+		
+		JLabel lblDaLiVam = new JLabel("Da li Vam se kuca ili stan nalaze u blizini glavne ulice ?");
+		lblDaLiVam.setForeground(Color.WHITE);
+		lblDaLiVam.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDaLiVam.setBounds(34, 38, 369, 36);
+		panelBlizinaUlice.add(lblDaLiVam);
+		
+	    radioButtonDABl = new JRadioButton("Da");
+		grupaBlizina.add(radioButtonDABl);
+		radioButtonDABl.setForeground(Color.WHITE);
+		radioButtonDABl.setBackground(new Color(255, 51, 51));
+		radioButtonDABl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				btnDalje_Blizina.setVisible(true);
+				
+
+			}
+		});
+		radioButtonDABl.setBounds(34, 97, 125, 23);
+		panelBlizinaUlice.add(radioButtonDABl);
+		
+	    radioButtonNEBl = new JRadioButton("Ne");
+		grupaBlizina.add(radioButtonNEBl);
+		radioButtonNEBl.setForeground(Color.WHITE);
+		radioButtonNEBl.setBackground(new Color(255, 51, 51));
+		radioButtonNEBl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				btnDalje_Blizina.setVisible(true);
+				
+
+			}
+		});
+		radioButtonNEBl.setBounds(34, 137, 125, 23);
+		panelBlizinaUlice.add(radioButtonNEBl);
+		
+		JLabel logoBlizina = new JLabel("");
+		logoBlizina.setIcon(new ImageIcon(FormaIzborProzora.class.getResource("/slike/logo.png")));
+		logoBlizina.setBounds(10, 448, 465, 66);
+		panelBlizinaUlice.add(logoBlizina);
+		
+	    buttonNazadBlizina = new JButton("Nazad");
+	    buttonNazadBlizina.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		cl.previous(panelSaPitanjima);
+	    	}
+	    });
+		buttonNazadBlizina.setForeground(Color.WHITE);
+		buttonNazadBlizina.setBackground(new Color(255, 51, 51));
+		buttonNazadBlizina.setBounds(256, 414, 89, 23);
+		panelBlizinaUlice.add(buttonNazadBlizina);
+		
+		btnDalje_Blizina = new JButton("Dalje");
+		btnDalje_Blizina.setVisible(false);
+		btnDalje_Blizina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dp.setBlizinaUlice(blizinaUlice());
+
+				cl.show(panelSaPitanjima, DIMENZIJE);
+
+			}
+
+			private boolean blizinaUlice() {
+				if (radioButtonDABl.isSelected()) {
+					return true;
+
+				}
+				
+				if (radioButtonNEBl.isSelected()) {
+					return  false;
+
+				}
+				return false;
+			}
+		});
+		btnDalje_Blizina.setForeground(Color.WHITE);
+		btnDalje_Blizina.setBackground(new Color(255, 51, 51));
+		btnDalje_Blizina.setBounds(372, 414, 89, 23);
+		panelBlizinaUlice.add(btnDalje_Blizina);
 		// 10 pitanje
 
 		JPanel panelDimenzije = new JPanel();
@@ -1519,5 +1615,4 @@ public class FormaIzborProzora extends JFrame {
 
 
 	}
-
 }

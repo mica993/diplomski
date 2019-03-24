@@ -4,6 +4,7 @@ package forme;
 import java.awt.EventQueue;
 import java.awt.Image;
 
+
 //import javax.print.attribute.standard.JobOriginatingUserName;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -75,7 +76,7 @@ public class FormaResenje extends JFrame {
 		setForeground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// setBounds(350, 250, 650, 600);
-		setBounds(100, 100, 650, 600);
+		setBounds(100, 100, 730, 700);
 		setLocationRelativeTo(null);
 		this.setResizable(false);
 
@@ -85,18 +86,18 @@ public class FormaResenje extends JFrame {
 		setContentPane(contentPane);
 
 		final JTextPane lblNatpis = new JTextPane();
+		lblNatpis.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNatpis.setBackground(Color.BLACK);
 		lblNatpis.setForeground(Color.WHITE);
-		lblNatpis.setBounds(295, 241, 304, 196);
+		lblNatpis.setBounds(487, 290, 237, 170);
 		contentPane.add(lblNatpis);
 
 		lblslika = new JLabel(" ");
-		lblslika.setBackground(Color.BLACK);
+	
+		lblslika.setBackground(Color.WHITE);
 		lblslika.setForeground(Color.WHITE);
-		lblslika.setBounds(10, 217, 238, 269);
+		lblslika.setBounds(10, 196, 475, 426);
 		contentPane.add(lblslika);
-
-		lblNatpis.setText("Resenje");
 		System.out.println("********Nakon izvrsenja pravila*****************");
 		System.out.println(dp);
 		System.out.println("*************************");
@@ -108,7 +109,7 @@ public class FormaResenje extends JFrame {
 		txtpnPogledajteDaLi.setBackground(Color.BLACK);
 		txtpnPogledajteDaLi
 				.setText("Pogledajte jo\u0161 neke tipove prozora koje Vam je expertni sistem predlo\u017Eio");
-		txtpnPogledajteDaLi.setBounds(10, 497, 315, 38);
+		txtpnPogledajteDaLi.setBounds(10, 622, 307, 38);
 		contentPane.add(txtpnPogledajteDaLi);
 		txtpnPogledajteDaLi.setEditable(false);
 
@@ -152,6 +153,9 @@ public class FormaResenje extends JFrame {
 			} else {
 
 				lblNatpis.setText("Nema proizvoda u bazi");
+				lblNatpis.setEditable(false);
+				lblslika.setIcon(new ImageIcon(FormaResenje.class.getResource("/slike/prozor.jpg")));
+				//lblslika.setIcon(new ImageIcon(FormaPocetnaMain.class.getResource("/slike/")));
 
 			}
 		} catch (SQLException e) {
@@ -164,7 +168,7 @@ public class FormaResenje extends JFrame {
 
 		btnSledeci.setBackground(Color.BLACK);
 		btnSledeci.setForeground(Color.WHITE);
-		btnSledeci.setBounds(497, 497, 103, 38);
+		btnSledeci.setBounds(611, 622, 103, 38);
 
 		try {
 			if (rs.next()) {
@@ -220,11 +224,15 @@ public class FormaResenje extends JFrame {
 		 * btnPredhodno.addActionListener(new ActionListener() { public void
 		 * actionPerformed(ActionEvent arg0) { } });
 		 */
+		btnPredhodno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		// Dugme predhodno
 
 		btnPredhodno.setBackground(Color.BLACK);
 		btnPredhodno.setForeground(Color.WHITE);
-		btnPredhodno.setBounds(351, 497, 103, 38);
+		btnPredhodno.setBounds(487, 622, 103, 38);
 		btnPredhodno.setVisible(false);
 		contentPane.add(btnPredhodno);
 

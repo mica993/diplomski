@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import klasa.DrveniProzor;
+import klasa.DrveniProzor.Podrucje;
 
 public class DBBroker {
 
@@ -70,7 +71,11 @@ public class DBBroker {
 		   
 		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala()+ " AND cena <= " + dp.getCena();
 	 
-		  
+		   	 if(dp.getPodrucje() == Podrucje.Primorskom) {
+		   		upit += " AND materijal != 'Bor'" ;
+		   		dp.setMaterijal(null);
+		 	   System.out.println("Podrucje primorsko  " + upit );
+		   	 }
 			   if (dp.getMaterijal() != null )  {
 				   upit += " AND materijal = '" + dp.getMaterijal() +"'" ;
 				   System.out.println("Materijal nije null   " + upit );
@@ -90,12 +95,12 @@ public class DBBroker {
 				   upit +=  " AND tip= '" + dp.getTip() + "'";
 				   System.out.println(" tip nije null "+upit);
 			  }
-			   if(dp.getCena() == 0) {
+			  /* if(dp.getCena() == 0) {
 				   upit +=  " AND tip= '" + dp.getTip() + "'";
 				   System.out.println(" tip nije null "+upit);
-			  }
+			  }*/
 			   
-			   upit += " LIMIT 5";
+			   upit += " LIMIT 7";
 			   System.out.println(upit);
 			  
 			   
