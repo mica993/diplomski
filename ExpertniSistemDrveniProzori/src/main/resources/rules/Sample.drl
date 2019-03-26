@@ -153,11 +153,11 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako mu  je grejanje centralno ili necentralizovano i zivi na primorskom podrucju dovoljno mu je debljina ramam 68 "
+rule "Ako mu  je grejanje centralno ili necentralizovano ili konbinovano i zivi na primorskom podrucju dovoljno mu je debljina ramam 68 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom && ( grejanje == Grejanje.centralno || grejanje == Grejanje.necentralizovano)  )
+       dp : DrveniProzor( podrucje == Podrucje.Primorskom && ( grejanje == Grejanje.centralno || grejanje == Grejanje.necentralizovano || grejanje == Grejanje.konbinovano)  )
     then
      
         dp.setDebljina(68);
@@ -178,11 +178,11 @@ lock-on-active true
         System.out.println("13.Pravilo");
         update( dp );
 end
-rule "Ako mu  je grejanje necentralizovano i zivi na planinskom podrucju ili brdckom dovoljno mu je debljina ramam 90 "
+rule "Ako mu  je grejanje necentralizovano ili konbinovano i zivi na planinskom podrucju ili brdckom dovoljno mu je debljina ramam 90 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( grejanje == Grejanje.necentralizovano && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom )) 
+       dp : DrveniProzor( (grejanje == Grejanje.necentralizovano || grejanje == Grejanje.konbinovano ) && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom )) 
     then
      
         dp.setDebljina(90);
@@ -205,15 +205,15 @@ lock-on-active true
         System.out.println("15.Pravilo");
         update( dp );
 end
-rule "Ako mu  je grejanje centralno i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 78 "
+rule "Ako mu  je grejanje centralno i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 68 "
 lock-on-active true
 //salience 10
     when
        dp : DrveniProzor( grejanje == Grejanje.centralno && 
-       (podrucje == Podrucje.Ravnicarskom  ))
+       (podrucje == Podrucje.Ravnicarskom ) )
     then
      
-        dp.setDebljina(78);
+        dp.setDebljina(68);
        
         System.out.println("16.Pravilo");
         update( dp );
@@ -230,52 +230,8 @@ lock-on-active true
         System.out.println("17.Pravilo");
         update( dp );
 end
-/*
-rule "Ako  zivi na primorskom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
 
-lock-on-active true
-//salience 10
-    when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && cena > 425  &&  cena <= 800 )
-    then
-     
-       //dp.setMaterijal(null);
-        dp.setMaterijal(Materijal.Hrast);
-        System.out.println("18.Pravilo");
-        update( dp );
-end
-*/
-/*
-rule "Ako  zivi na primorsk nnnom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
-
-//lock-on-active true
-no-loop true
-//salience 10
-    when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && dimenzije == "100x140" && cena < 500  &&  cena >= 350 )
-    then
-     
-       //dp.setMaterijal(null);
-        dp.setMaterijal(Materijal.Hrast);
-        System.out.println("6666.Pravilo");
-        update( dp );
-end
-rule "Ako  zivi na primorsvbbk nnnom podrucju i spreman je da potrosi vise od 250 eura materijal  je Hrast, a ne Jela "
-
-//lock-on-active true
-no-loop true
-//salience 10
-    when
-       dp : DrveniProzor( podrucje == Podrucje.Primorskom   && dimenzije == "100x120" && cena <= 250  &&  cena < 425 )
-    then
-     
-       //dp.setMaterijal(null);
-        dp.setMaterijal(Materijal.Hrast);
-        System.out.println("65555.Pravilo");
-        update( dp );
-end
-*/
-rule "Ako je osetljivost na buku i hladnocu = DA  "
+rule "Ako je osetljivost na buku i hladnocu = DA i blizina ulice ili Da ili Ne  postavi debljinu rama na 90 "
 lock-on-active true
 //salience 10
     when
@@ -289,11 +245,11 @@ lock-on-active true
 end
 
 
-rule "Osetljivost na  buku  i hladnocu = Slabije  "
+rule "Ako je osetljivost na  buku  i hladnocu = Slabije  i blizina ulice ili Da ili Ne  postavi debljinu rama na 78 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Slabije" && osetljivostNaHladnocu == "Slabije")
+       dp : DrveniProzor( osetljivostNaBuku == "Slabije" && osetljivostNaHladnocu == "Slabije" &&(  blizinaUlice == true || blizinaUlice == false))
     then
      
          dp.setDebljina(78);
@@ -303,11 +259,11 @@ lock-on-active true
 end
 
 
-rule "Osetljivost na buku  i hladnocu = NE  "
+rule " Ako je osetljivost na buku  i hladnocu = NE ,a blizina ulice Ne  postavi debljinu rama na 68 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne"    && blizinaUlice == false)
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne"  && blizinaUlice == false)
     then
      
          dp.setDebljina(68);
@@ -318,11 +274,11 @@ end
 
 
 
-rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne    "
+rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne i blizina ulice Ne  postavi debljinu rama na 78  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku != "Da" )
+       dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku != "Da" && blizinaUlice == false )
     then
      
          dp.setDebljina(78);
@@ -330,11 +286,11 @@ lock-on-active true
         System.out.println("22.Pravilo");
         update( dp );
 end
-rule "Osetljivost na hladnocu Slabije , a  na buku razlicito od slabije  "
+rule "Ako je osetljivost na hladnocu Slabije , a  na buku razlicito od slabije i blizina ulice ili Da ili Ne  postavi debljinu rama na 78  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku != "Slabije" )
+       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku != "Slabije" &&(  blizinaUlice == true || blizinaUlice == false) )
     then
      
          dp.setDebljina(78);
@@ -342,11 +298,11 @@ lock-on-active true
         System.out.println("23.Pravilo");
         update( dp );
 end
-rule "Osetljivost na hladnocu Ne  , a na buku razlicito od Ne "
+rule "Ako je Osetljivost na hladnocu Ne  , a na buku razlicito od Ne i blizina ulice ili Da ili Ne  postavi debljinu rama na 78 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Ne" && osetljivostNaBuku != "Ne")
+       dp : DrveniProzor( osetljivostNaHladnocu == "Ne" && osetljivostNaBuku != "Ne" &&(  blizinaUlice == true || blizinaUlice == false))
     then
      
          dp.setDebljina(78);
@@ -356,11 +312,11 @@ lock-on-active true
 end
 
 
-rule "Osetljivost na buku = DA , a na hladnocu = Slabije ili Ne    "
+rule "Ako je osetljivost na buku = DA , a na hladnocu = Slabije ili Ne i blizina ulice Ne  postavi debljinu rama na 78  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Da" && ( osetljivostNaHladnocu != "Da" ))
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu != "Da"  && blizinaUlice == false )
     then
      
          dp.setDebljina(78);
@@ -368,11 +324,11 @@ lock-on-active true
         System.out.println("25.Pravilo");
         update( dp );
 end
-rule "Osetljivost na buku Slabije , a  na hladnocu razlicito od slabije  "
+rule "Ako je osetljivost na buku Slabije ,a na hladnocu razlicito od slabije i blizina ulice ili Da ili Ne  postavi debljinu rama na 78   "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor(osetljivostNaBuku == "Slabije" &&  osetljivostNaHladnocu != "Slabije" )
+       dp : DrveniProzor(osetljivostNaBuku == "Slabije" &&  osetljivostNaHladnocu != "Slabije" &&(  blizinaUlice == true || blizinaUlice == false) )
     then
      
          dp.setDebljina(78);
@@ -380,11 +336,11 @@ lock-on-active true
         System.out.println("26.Pravilo");
         update( dp );
 end
-rule "Osetljivost na buku Ne  , a na hladnocu razlicito od Ne "
+rule "Ako je osetljivost na buku Ne  , a na hladnocu razlicito od Ne  i blizina ulice ili Da ili Ne  postavi debljinu rama na 78"
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor(  osetljivostNaBuku == "Ne" && ( osetljivostNaHladnocu != "Ne"))
+       dp : DrveniProzor(  osetljivostNaBuku == "Ne" && osetljivostNaHladnocu != "Ne" && (  blizinaUlice == true || blizinaUlice == false))
     then
      
          dp.setDebljina(78);
@@ -394,11 +350,11 @@ lock-on-active true
 end
 
 
-rule "Ako je osetljivost na hladnocu i buku Slabija , a  mestoZivljrnja planinsko  "
+rule "Ako je osetljivost na hladnocu i buku Slabija , a  mestoZivljrnja planinsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 90  "
 no-loop true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije"  && podrucje == Podrucje.Planinskom )
+       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije" && (  blizinaUlice == true || blizinaUlice == false) && podrucje == Podrucje.Planinskom )
     then
      
          dp.setDebljina(90);
@@ -407,11 +363,11 @@ no-loop true
         update( dp );
 end
 
-rule "Ako je osetljivost na buku i hladnocu = DA a podrucje Primorsko "
-lock-on-active true
+rule "Ako je osetljivost na hladnocu i buku Da , a  mestoZivljenja priorsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 90  "
+no-loop true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da" && podrucje == Podrucje.Primorskom)
+       dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku == "Da" && (  blizinaUlice == true || blizinaUlice == false) && podrucje == Podrucje.Primorskom )
     then
      
          dp.setDebljina(78);
@@ -419,11 +375,12 @@ lock-on-active true
         System.out.println("29.Pravilo");
         update( dp );
 end
-rule "Osetljivost na buku  i hladnocu = NE a podrucje planinsko  "
+
+rule "Osetljivost na buku  i hladnocu = NE, a podrucje planinsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 78  "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom))
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" &&  (  blizinaUlice == true ||  blizinaUlice == false) && (podrucje == Podrucje.Planinskom || podrucje == Podrucje.Brdskom))
     then
      
          dp.setDebljina(78);
@@ -646,3 +603,72 @@ no-loop true
         System.out.println("41.Pravilo");
         update( dp );
 end
+
+
+rule "Ako je osetljivost  buku i hladnocu = Ne a blizina ulice = true "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Ne" && osetljivostNaHladnocu == "Ne" &&  blizinaUlice == true )
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("42.Pravilo");
+        update( dp );
+end
+
+
+ rule "Osetljivost na buku = DA , a na hladnocu = Slabije ili NE i blizina ulice DA    "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && ( osetljivostNaHladnocu != "Da" ) &&  blizinaUlice == true)
+    then
+     
+         dp.setDebljina(90);
+       
+        System.out.println("43.Pravilo");
+        update( dp );
+end
+
+rule "Ako je osetljivost na buku i hladnocu = DA blizinaUlice == false  "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaBuku == "Da" && osetljivostNaHladnocu == "Da"  && blizinaUlice == false)
+    then
+     
+         dp.setDebljina(78);
+       
+        System.out.println("44.Pravilo");
+        update( dp );
+end
+rule "Ako mu  je grejanje konbinovano i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 68 "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( grejanje == Grejanje.konbinovano && 
+       (podrucje == Podrucje.Ravnicarskom ) )
+    then
+     
+        dp.setDebljina(78);
+       
+        System.out.println("45.Pravilo");
+        update( dp );
+end
+rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne i blizina ulice DA    "
+lock-on-active true
+//salience 10
+    when
+       dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku != "Da" && blizinaUlice == true )
+    then
+     
+         dp.setDebljina(90);
+       
+        System.out.println("46.Pravilo");
+        update( dp );
+end
+
+
+
