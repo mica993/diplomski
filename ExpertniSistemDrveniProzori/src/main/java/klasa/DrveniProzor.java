@@ -14,7 +14,7 @@ public class DrveniProzor {
 
 	public enum Grejanje {
 
-		centralno, necentralizovano
+		centralno, necentralizovano,konbinovano
 
 	}
 
@@ -48,11 +48,13 @@ public class DrveniProzor {
 	private int cena;
 	private String dimenzije;
     private int brojStakala;
+    private int minCena;
+    private int maxCena;
 
 	public DrveniProzor(MestoZivljenja mestoZivljenja, Pozicija pozicija,
 			int spratnost, boolean fasada, double debljinaIzolacije,
 			Grejanje grejanje, String osetljivostNaBuku,
-			String osetljivostNaHladnocu, boolean blizinaUlice, int cena, Materijal materijal,
+			String osetljivostNaHladnocu, boolean blizinaUlice, int cena, int minCena,int maxCena, Materijal materijal,
 			int debljina, String tip, String dimenzije,int brojStakala, Podrucje podrucje) {
 		super();
 		this.podrucje= podrucje;
@@ -66,6 +68,8 @@ public class DrveniProzor {
 		this.osetljivostNaHladnocu = osetljivostNaHladnocu;
 		this.dimenzije = dimenzije;
 		this.cena = cena;
+		this.minCena=minCena;
+		this.maxCena=maxCena;
 		this.materijal=materijal;
 		this.tip=tip;
 		this.brojStakala= brojStakala;
@@ -167,6 +171,22 @@ public class DrveniProzor {
 		return cena;
 	}
 
+	public int getMinCena() {
+		return minCena;
+	}
+
+	public void setMinCena(int minCena) {
+		this.minCena = minCena;
+	}
+
+	public int getMaxCena() {
+		return maxCena;
+	}
+
+	public void setMaxCena(int maxCena) {
+		this.maxCena = maxCena;
+	}
+
 	public void setCena(int cena) {
 		this.cena = cena;
 	}
@@ -235,7 +255,9 @@ public class DrveniProzor {
 				+ ", \n materijal= " + materijal 
 				+ ", \n debljina= " + debljina
 				+ " , \n dimenzije= " + dimenzije 
-				+ " , \n cena= " + cena
+				//+ " , \n cena= " + cena
+				+ " , \n minCena= " + minCena
+				+ " , \n maxCena= " + maxCena
 			    + ", \n brojStakala= " + brojStakala 
 			    + ", \n podrucije = " + podrucje;
 	}
@@ -243,7 +265,9 @@ public class DrveniProzor {
 
 		return " Tip = " + tip
 				+ ",\n Materijal= " + materijal + ",\n Debljina= " + debljina
-				+ " ,\n Dimenzije= " + dimenzije + " , \n Cena= " + cena
+				+ " ,\n Dimenzije= " + dimenzije + " , \n cena= " + cena +"\u20ac"
+				//" , \n minCena= " + minCena
+				//+ " , \n maxCena= " + maxCena
 				+ ", \n BrojStakala= " + brojStakala ;
 	}
 }

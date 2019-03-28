@@ -670,5 +670,18 @@ lock-on-active true
         update( dp );
 end
 
-
+rule "cena  "
+lock-on-active true
+//no-loop true
+//salience 10
+    when
+       dp : DrveniProzor( minCena >= 550 && maxCena <= 800 )
+    then
+     
+         dp.setMinCena(0);
+         dp.setMaxCena(0);
+       
+        System.out.println("47.Pravilo");
+        update( dp );
+end
 

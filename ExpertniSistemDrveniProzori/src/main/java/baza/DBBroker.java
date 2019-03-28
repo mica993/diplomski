@@ -69,7 +69,7 @@ public class DBBroker {
 	   public ResultSet vrateResenja( DrveniProzor dp) {
 		   rs = null;
 		   
-		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala()+ " AND cena <= " + dp.getCena();
+		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala();
 	 
 		   	 if(dp.getPodrucje() == Podrucje.Primorskom) {
 		   		upit += " AND materijal != 'Bor'" ;
@@ -83,7 +83,7 @@ public class DBBroker {
 			   
 			   if(dp.getDebljina() != 0) {
 				   upit += " AND debljinaRama = " + dp.getDebljina();
-				   System.out.println("Debljina 0 " + upit);
+				   System.out.println("Debljina nije 0 " + upit);
 			   }
 			   
 			   if(dp.getDimenzije() != null) {
@@ -93,12 +93,14 @@ public class DBBroker {
 			   
 			   if(dp.getTip() != null) {
 				   upit +=  " AND tip= '" + dp.getTip() + "'";
+			
 				   System.out.println(" tip nije null "+upit);
 			  }
-			  /* if(dp.getCena() == 0) {
-				   upit +=  " AND tip= '" + dp.getTip() + "'";
-				   System.out.println(" tip nije null "+upit);
-			  }*/
+			  if(dp.getMinCena() != 0 && dp.getMaxCena() != 0) {
+				   upit +=  " AND cena >= " + dp.getMinCena()+ " AND cena <= " + dp.getMaxCena();
+				 
+				   System.out.println(" cena nije 0 "+upit);
+			  }
 			   
 			   upit += " LIMIT 7";
 			   System.out.println(upit);

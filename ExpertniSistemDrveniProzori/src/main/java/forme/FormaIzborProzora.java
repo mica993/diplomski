@@ -69,7 +69,9 @@ public class FormaIzborProzora extends JFrame {
 	private JButton buttonNazad9;
 	private JButton btnDalje_Blizina;
 	private JButton buttonNazadBlizina ;
-
+	private JButton buttonZavrsii;
+	private JButton buttonNazadCena;
+	
 	final static String MESTOZIVLJENJA = "Mesto zivljenja";
 	final static String POZICIJASTANA = " Pozicioniranost stana";
 	final static String SPRATNOST = "Spratnost";
@@ -104,6 +106,7 @@ public class FormaIzborProzora extends JFrame {
 	JRadioButton rbtnIzolacija16;
 	JRadioButton rbtnCentralno;
 	JRadioButton rbtnNecentralizovano;
+	JRadioButton radioKonbinovano;
 	JRadioButton rdbtnPrimorski;
 	JRadioButton rdbtnPlaninski;
 	JRadioButton rdbtnRavnicarski;
@@ -121,7 +124,11 @@ public class FormaIzborProzora extends JFrame {
 	JRadioButton rdbtnDruge;
 	JRadioButton radioButtonNEBl ;
 	JRadioButton radioButtonDABl;
+	JRadioButton radioButton160Do375 ;
+	JRadioButton radioButton550Do800;
+	JRadioButton radioButton375Do550;
 
+	
 	private final ButtonGroup grupaDimenzije = new ButtonGroup();
 	private final ButtonGroup grupaHladnoca = new ButtonGroup();
 	private final ButtonGroup grupaBuka = new ButtonGroup();
@@ -132,6 +139,7 @@ public class FormaIzborProzora extends JFrame {
 	private final ButtonGroup grupaFasada = new ButtonGroup();
 	private final ButtonGroup grupaMestoZivljenja = new ButtonGroup();
 	private final ButtonGroup grupaPozicijaStana = new ButtonGroup();
+	private final ButtonGroup grupaCena = new ButtonGroup();
 	
 
 	public boolean closed;
@@ -146,6 +154,8 @@ public class FormaIzborProzora extends JFrame {
 	private JLabel lblLogo6;
 	private JLabel lblLogo7;
 	private JLabel lblLogo8;
+	private JLabel label_LogoCena;
+
 
 	private JTextPane textPane1;
    /* private JTextPane textPane2;
@@ -158,6 +168,9 @@ public class FormaIzborProzora extends JFrame {
 	private JTextPane textPane9;*/
 	private JTextPane txtpnUkoliko;
 	private JPanel panelBlizinaUlice;
+	private JPanel panelCeenaa;
+	private JLabel labelNovac;
+
 
 
 	public static void main(String[] args) {
@@ -221,12 +234,13 @@ public class FormaIzborProzora extends JFrame {
 		panelGdeZivite.setLayout(null);
 
 		JLabel lblPrvoPitanje = new JLabel(" Gde \u017Eivite ?");
-		lblPrvoPitanje.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPrvoPitanje.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPrvoPitanje.setForeground(Color.WHITE);
 		lblPrvoPitanje.setBounds(34, 38, 369, 36);
 		panelGdeZivite.add(lblPrvoPitanje);
 
 		rdbtnKuca = new JRadioButton("Ku\u0107a");
+		rdbtnKuca.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnKuca.setForeground(Color.WHITE);
 		rdbtnKuca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -244,6 +258,7 @@ public class FormaIzborProzora extends JFrame {
 		rdbtnKuca.setBounds(34, 97, 125, 23);
 
 		rdbtnStan = new JRadioButton("Stan");
+		rdbtnStan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnStan.setForeground(Color.WHITE);
 		rdbtnStan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -294,7 +309,7 @@ public class FormaIzborProzora extends JFrame {
 		textPane1 = new JTextPane();
 		textPane1.setBackground(Color.BLACK);
 		textPane1.setForeground(Color.WHITE);
-		textPane1.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		textPane1.setFont(new Font("Tahoma", Font.ITALIC, 17));
 		textPane1
 				.setText("Da bi ste pre\u0161li na slede\u0107e pitanje morate izabrati jedan od ponu\u0111enih odgovora.");
 		textPane1.setBounds(227, 97, 234, 77);
@@ -315,12 +330,13 @@ public class FormaIzborProzora extends JFrame {
 		panelPozicijaStana.setLayout(null);
 
 		JLabel lblPozicijaStana = new JLabel("Kako vam je pozicioniran stan ?");
-		lblPozicijaStana.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPozicijaStana.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPozicijaStana.setForeground(Color.WHITE);
 		lblPozicijaStana.setBounds(34, 38, 369, 36);
 		panelPozicijaStana.add(lblPozicijaStana);
 
 		rdbtnIstok = new JRadioButton("Istok");
+		rdbtnIstok.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		rdbtnIstok.setForeground(Color.WHITE);
 		rdbtnIstok.addActionListener(new ActionListener() {
@@ -338,6 +354,7 @@ public class FormaIzborProzora extends JFrame {
 		rdbtnIstok.setBounds(34, 97, 118, 23);
 
 		rdbtnZapad = new JRadioButton("Zapad");
+		rdbtnZapad.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnZapad.setForeground(Color.WHITE);
 		rdbtnZapad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -355,6 +372,7 @@ public class FormaIzborProzora extends JFrame {
 		rdbtnZapad.setBounds(34, 137, 118, 23);
 
 		rdbtnSever = new JRadioButton("Sever");
+		rdbtnSever.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnSever.setForeground(Color.WHITE);
 		rdbtnSever.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -372,6 +390,7 @@ public class FormaIzborProzora extends JFrame {
 		rdbtnSever.setBounds(34, 177, 118, 23);
 
 		rdbtnJug = new JRadioButton("Jug");
+		rdbtnJug.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnJug.setForeground(Color.WHITE);
 		rdbtnJug.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -469,13 +488,14 @@ public class FormaIzborProzora extends JFrame {
 		pabelSpratnostStana.setLayout(null);
 
 		JLabel lblKojaJeSpratnost = new JLabel("Koja je spratnost stana ?");
-		lblKojaJeSpratnost.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblKojaJeSpratnost.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblKojaJeSpratnost.setForeground(Color.WHITE);
 		lblKojaJeSpratnost.setBackground(Color.GRAY);
 		lblKojaJeSpratnost.setBounds(34, 38, 369, 36);
 		pabelSpratnostStana.add(lblKojaJeSpratnost);
 
 		final JLabel labelSpratnost = new JLabel("18");
+		labelSpratnost.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelSpratnost.setForeground(Color.WHITE);
 
 		labelSpratnost.setBounds(225, 185, 46, 14);
@@ -548,12 +568,13 @@ public class FormaIzborProzora extends JFrame {
 		panelFasadnaIzolacija.setLayout(null);
 
 		JLabel lblIzolacija = new JLabel("Da li imate fasadnu izolaciju ?");
-		lblIzolacija.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIzolacija.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIzolacija.setForeground(Color.WHITE);
 		lblIzolacija.setBounds(34, 38, 369, 36);
 		panelFasadnaIzolacija.add(lblIzolacija);
 
 		rbtnFasadaDa = new JRadioButton("Da");
+		rbtnFasadaDa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnFasadaDa.setForeground(Color.WHITE);
 		rbtnFasadaDa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -570,6 +591,7 @@ public class FormaIzborProzora extends JFrame {
 		panelFasadnaIzolacija.add(rbtnFasadaDa);
 
 		rbtnFasadaNe = new JRadioButton("Ne");
+		rbtnFasadaNe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnFasadaNe.setForeground(Color.WHITE);
 		rbtnFasadaNe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -657,12 +679,13 @@ public class FormaIzborProzora extends JFrame {
 		panelDebljinaIzolacije.setLayout(null);
 
 		JLabel lblDebljina = new JLabel("Koja Vam je debljina izolacije ?");
-		lblDebljina.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDebljina.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDebljina.setForeground(Color.WHITE);
 		lblDebljina.setBounds(34, 38, 369, 36);
 		panelDebljinaIzolacije.add(lblDebljina);
 
 		rbtnIzolacija4 = new JRadioButton("4");
+		rbtnIzolacija4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnIzolacija4.setForeground(Color.WHITE);
 		rbtnIzolacija4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -679,6 +702,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDebljinaIzolacije.add(rbtnIzolacija4);
 
 		rbtnIzolacija8 = new JRadioButton("8");
+		rbtnIzolacija8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnIzolacija8.setForeground(Color.WHITE);
 		rbtnIzolacija8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -695,6 +719,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDebljinaIzolacije.add(rbtnIzolacija8);
 
 		rbtnIzolacija16 = new JRadioButton("10");
+		rbtnIzolacija16.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnIzolacija16.setBackground(new Color(255, 51, 51));
 		rbtnIzolacija16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -774,12 +799,13 @@ public class FormaIzborProzora extends JFrame {
 		panelGrejanje.setLayout(null);
 
 		JLabel lblGrejanje = new JLabel("Koje grejanje  imate ?");
-		lblGrejanje.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblGrejanje.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblGrejanje.setForeground(Color.WHITE);
 		lblGrejanje.setBounds(34, 38, 369, 36);
 		panelGrejanje.add(lblGrejanje);
 
 		rbtnCentralno = new JRadioButton("Centralno");
+		rbtnCentralno.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnCentralno.setBackground(new Color(255, 51, 51));
 		rbtnCentralno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -792,10 +818,11 @@ public class FormaIzborProzora extends JFrame {
 		});
 		rbtnCentralno.setForeground(Color.WHITE);
 		grupaGrejanje.add(rbtnCentralno);
-		rbtnCentralno.setBounds(34, 97, 125, 23);
+		rbtnCentralno.setBounds(34, 97, 138, 23);
 		panelGrejanje.add(rbtnCentralno);
 
 		rbtnNecentralizovano = new JRadioButton("Necentralizovano");
+		rbtnNecentralizovano.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rbtnNecentralizovano.setBackground(new Color(255, 51, 51));
 		rbtnNecentralizovano.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -808,7 +835,7 @@ public class FormaIzborProzora extends JFrame {
 		});
 		rbtnNecentralizovano.setForeground(Color.WHITE);
 		grupaGrejanje.add(rbtnNecentralizovano);
-		rbtnNecentralizovano.setBounds(34, 137, 125, 23);
+		rbtnNecentralizovano.setBounds(34, 137, 138, 23);
 		panelGrejanje.add(rbtnNecentralizovano);
 
 		buttonDalje5 = new JButton("Dalje");
@@ -830,6 +857,14 @@ public class FormaIzborProzora extends JFrame {
 				if (rbtnNecentralizovano.isSelected()) {
 
 					return Grejanje.necentralizovano;
+				}
+				if (rbtnNecentralizovano.isSelected()) {
+
+					return Grejanje.necentralizovano;
+				}
+				if (radioKonbinovano.isSelected()) {
+
+					return Grejanje.konbinovano;
 				}
 				return null;
 			}
@@ -855,6 +890,23 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogooo.setBounds(10, 448, 465, 66);
 		panelGrejanje.add(lblLogooo);
+		
+	    radioKonbinovano = new JRadioButton("Konbinovno");
+	    radioKonbinovano.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	    grupaGrejanje.add(radioKonbinovano);
+		radioKonbinovano.setForeground(Color.WHITE);
+		radioKonbinovano.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				buttonDalje5.setVisible(true);
+				// buttonNazad5.setVisible(true);
+				//textPane5.setVisible(false);
+
+			}
+		});
+		radioKonbinovano.setBackground(new Color(255, 51, 51));
+		radioKonbinovano.setBounds(34, 177, 138, 23);
+		panelGrejanje.add(radioKonbinovano);
 /*
 		textPane5 = new JTextPane();
 		textPane5
@@ -876,12 +928,13 @@ public class FormaIzborProzora extends JFrame {
 
 		JLabel lblNaKomKlimatckom = new JLabel(
 				"Na kom klimatskom podru\u010Dju \u017Eivite ?");
-		lblNaKomKlimatckom.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNaKomKlimatckom.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNaKomKlimatckom.setForeground(Color.WHITE);
 		lblNaKomKlimatckom.setBounds(34, 38, 369, 36);
 		panelKlimackoPodrucje.add(lblNaKomKlimatckom);
 
 		rdbtnPrimorski = new JRadioButton("Primorskom");
+		rdbtnPrimorski.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnPrimorski.setBackground(new Color(255, 51, 51));
 		rdbtnPrimorski.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -898,6 +951,7 @@ public class FormaIzborProzora extends JFrame {
 		panelKlimackoPodrucje.add(rdbtnPrimorski);
 
 		rdbtnPlaninski = new JRadioButton("Planinskom");
+		rdbtnPlaninski.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnPlaninski.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -914,6 +968,7 @@ public class FormaIzborProzora extends JFrame {
 		panelKlimackoPodrucje.add(rdbtnPlaninski);
 
 		rdbtnRavnicarski = new JRadioButton("Ravni\u010Darskom");
+		rdbtnRavnicarski.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnRavnicarski.setForeground(Color.WHITE);
 		rdbtnRavnicarski.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -930,6 +985,7 @@ public class FormaIzborProzora extends JFrame {
 		panelKlimackoPodrucje.add(rdbtnRavnicarski);
 
 		rdbtnBrdski = new JRadioButton("Brdskom");
+		rdbtnBrdski.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnBrdski.setForeground(Color.WHITE);
 		rdbtnBrdski.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1017,12 +1073,13 @@ public class FormaIzborProzora extends JFrame {
 		panelBuka.setLayout(null);
 
 		JLabel lblDaLiSte = new JLabel("Da li ste osetljivi na buku ?");
-		lblDaLiSte.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDaLiSte.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDaLiSte.setForeground(Color.WHITE);
 		lblDaLiSte.setBounds(34, 38, 369, 36);
 		panelBuka.add(lblDaLiSte);
 
 		rdbtnBukaDa = new JRadioButton("Da");
+		rdbtnBukaDa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnBukaDa.setForeground(Color.WHITE);
 		rdbtnBukaDa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1039,6 +1096,7 @@ public class FormaIzborProzora extends JFrame {
 		panelBuka.add(rdbtnBukaDa);
 
 		rdbtnBukaNe = new JRadioButton("Ne");
+		rdbtnBukaNe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnBukaNe.setBackground(new Color(255, 51, 51));
 		rdbtnBukaNe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1055,6 +1113,7 @@ public class FormaIzborProzora extends JFrame {
 		panelBuka.add(rdbtnBukaNe);
 
 		rdbtnBukaSlabije = new JRadioButton("Slabije");
+		rdbtnBukaSlabije.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnBukaSlabije.setForeground(Color.WHITE);
 		rdbtnBukaSlabije.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1138,12 +1197,13 @@ public class FormaIzborProzora extends JFrame {
 
 		JLabel lblDaLiSte_1 = new JLabel(
 				"Da li ste osetljivi na hladno\u0107u ?");
-		lblDaLiSte_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDaLiSte_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDaLiSte_1.setForeground(Color.WHITE);
 		lblDaLiSte_1.setBounds(34, 38, 369, 36);
 		panelHladnoca.add(lblDaLiSte_1);
 
 		rdbtnHladnocaDa = new JRadioButton("Da");
+		rdbtnHladnocaDa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnHladnocaDa.setBackground(new Color(255, 51, 51));
 		rdbtnHladnocaDa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1161,6 +1221,7 @@ public class FormaIzborProzora extends JFrame {
 		panelHladnoca.add(rdbtnHladnocaDa);
 
 		rdbtnHladnocaSlabije = new JRadioButton("Slabije");
+		rdbtnHladnocaSlabije.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnHladnocaSlabije.setForeground(Color.WHITE);
 		rdbtnHladnocaSlabije.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1178,6 +1239,7 @@ public class FormaIzborProzora extends JFrame {
 		panelHladnoca.add(rdbtnHladnocaSlabije);
 
 		rdbtnHladnocaNe = new JRadioButton("Ne");
+		rdbtnHladnocaNe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnHladnocaNe.setBackground(new Color(255, 51, 51));
 		rdbtnHladnocaNe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1265,11 +1327,12 @@ public class FormaIzborProzora extends JFrame {
 		
 		JLabel lblDaLiVam = new JLabel("Da li Vam se kuca ili stan nalaze u blizini glavne ulice ?");
 		lblDaLiVam.setForeground(Color.WHITE);
-		lblDaLiVam.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDaLiVam.setBounds(34, 38, 369, 36);
+		lblDaLiVam.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDaLiVam.setBounds(34, 38, 475, 36);
 		panelBlizinaUlice.add(lblDaLiVam);
 		
 	    radioButtonDABl = new JRadioButton("Da");
+	    radioButtonDABl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		grupaBlizina.add(radioButtonDABl);
 		radioButtonDABl.setForeground(Color.WHITE);
 		radioButtonDABl.setBackground(new Color(255, 51, 51));
@@ -1285,6 +1348,7 @@ public class FormaIzborProzora extends JFrame {
 		panelBlizinaUlice.add(radioButtonDABl);
 		
 	    radioButtonNEBl = new JRadioButton("Ne");
+	    radioButtonNEBl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		grupaBlizina.add(radioButtonNEBl);
 		radioButtonNEBl.setForeground(Color.WHITE);
 		radioButtonNEBl.setBackground(new Color(255, 51, 51));
@@ -1351,12 +1415,13 @@ public class FormaIzborProzora extends JFrame {
 
 		JLabel lblKojihDimenzijaVam = new JLabel(
 				"Kojih dimenzija Vam je potreban prozor ?");
-		lblKojihDimenzijaVam.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblKojihDimenzijaVam.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblKojihDimenzijaVam.setForeground(Color.WHITE);
 		lblKojihDimenzijaVam.setBounds(34, 38, 369, 36);
 		panelDimenzije.add(lblKojihDimenzijaVam);
 
 		rdbtn100x120 = new JRadioButton("100x120");
+		rdbtn100x120.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtn100x120.setBackground(new Color(255, 51, 51));
 		rdbtn100x120.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1374,6 +1439,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDimenzije.add(rdbtn100x120);
 
 		rdbtn100x140 = new JRadioButton("100x140");
+		rdbtn100x140.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtn100x140.setForeground(Color.WHITE);
 		rdbtn100x140.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1390,6 +1456,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDimenzije.add(rdbtn100x140);
 
 		rdbtn140x140 = new JRadioButton("140x140");
+		rdbtn140x140.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtn140x140.setForeground(Color.WHITE);
 		rdbtn140x140.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1406,6 +1473,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDimenzije.add(rdbtn140x140);
 
 		rdbtn160x140 = new JRadioButton("160x140");
+		rdbtn160x140.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtn160x140.setForeground(Color.WHITE);
 		rdbtn160x140.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1422,6 +1490,7 @@ public class FormaIzborProzora extends JFrame {
 		panelDimenzije.add(rdbtn160x140);
 
 		rdbtnDruge = new JRadioButton("Druge");
+		rdbtnDruge.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnDruge.setForeground(Color.WHITE);
 		rdbtnDruge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1510,18 +1579,145 @@ public class FormaIzborProzora extends JFrame {
 
 		txtpnUkoliko = new JTextPane();
 		txtpnUkoliko
-				.setText(" Ukoliko \u017Eelite da znate ta\u010Dnu cenu drvenog prozora\r\n za Va\u0161u \u017Eeljenu dimenziju kontaktirajte nas putem  \r\n telefona : +38765/511-364  ili email-a : mahagoni@outlook.com\r\n Sistem \u0107e Vam predlo\u017Eiti samo koja debljina rama bi bila idealna za Va\u0161 prozor.");
+				.setText(" Ukoliko \u017Eelite da znate ta\u010Dnu cenu drvenog prozora\r\n za Va\u0161u \u017Eeljenu dimenziju kontaktirajte nas putem  \r\n telefona : +38765/511-364  ili email-a :   mahagoni@outlook.com\r\n Sistem \u0107e Vam predlo\u017Eiti samo koja debljina rama bi bila idealna za Va\u0161 prozor.");
 		txtpnUkoliko.setForeground(Color.WHITE);
-		txtpnUkoliko.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		txtpnUkoliko.setFont(new Font("Tahoma", Font.ITALIC, 17));
 		txtpnUkoliko.setEditable(false);
 		txtpnUkoliko.setBackground(Color.BLACK);
-		txtpnUkoliko.setBounds(158, 261, 416, 104);
+		txtpnUkoliko.setBounds(158, 261, 416, 132);
 		panelDimenzije.add(txtpnUkoliko);
 		txtpnUkoliko.setEditable(false);
+		//ccc
+		panelCeenaa = new JPanel();
+		panelCeenaa.setLayout(null);
+		panelCeenaa.setBackground(Color.BLACK);
+		panelSaPitanjima.add(panelCeenaa, CENA);
+		
+		labelNovac = new JLabel("Koliko novca ste spremni da izdvojite ?");
+		labelNovac.setForeground(Color.WHITE);
+		labelNovac.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelNovac.setBounds(34, 38, 369, 36);
+		panelCeenaa.add(labelNovac);
+		
+		buttonZavrsii = new JButton("Zavr\u0161i");
+		buttonZavrsii.setVisible(false);
+		buttonZavrsii.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dp.setMinCena(vratiMin());
+				dp.setMaxCena(vratiMax());
+				System.out.println("****************************");
+				System.out.println(dp.toString());
+				dispose();
+				System.out.println("****************************");
+				
+			}
+
+			private int vratiMax() {
+				
+				
+				if (radioButton160Do375.isSelected()) {
+					return 375;
+				} else
+				if (radioButton375Do550.isSelected()) {
+					return 550;
+				}
+				else 
+				if (radioButton550Do800.isSelected()) {
+					return 800;
+				}
+				
+				return 0;
+			}
+
+			private int vratiMin() {
+				if (radioButton160Do375.isSelected()) {
+					return 160;
+				} else
+				if (radioButton375Do550.isSelected()) {
+					return 375;
+				}
+				else 
+				if (radioButton550Do800.isSelected()) {
+					return 550;
+				}
+				
+			
+				return 0;
+			}
+			
+		});
+		buttonZavrsii.setForeground(Color.WHITE);
+		buttonZavrsii.setBackground(new Color(255, 51, 51));
+		buttonZavrsii.setBounds(370, 414, 89, 23);
+		panelCeenaa.add(buttonZavrsii);
+		
+		buttonNazadCena = new JButton("Nazad");
+		buttonNazadCena.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.previous(panelSaPitanjima);
+			}
+		});
+		buttonNazadCena.setForeground(Color.WHITE);
+		buttonNazadCena.setBackground(new Color(255, 51, 51));
+		buttonNazadCena.setBounds(253, 414, 89, 23);
+		panelCeenaa.add(buttonNazadCena);
+		
+		label_LogoCena = new JLabel("logooo");
+		label_LogoCena.setIcon(new ImageIcon(FormaIzborProzora.class.getResource("/slike/logo.png")));
+		label_LogoCena.setBounds(10, 448, 474, 66);
+		panelCeenaa.add(label_LogoCena);
+		
+		radioButton160Do375 = new JRadioButton("160\u20ac-375\u20ac");
+		radioButton160Do375.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		grupaCena.add(radioButton160Do375);
+		radioButton160Do375.setForeground(Color.WHITE);
+		radioButton160Do375.setBackground(new Color(255, 51, 51));
+		radioButton160Do375.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				buttonZavrsii.setVisible(true);
+				
+
+			}
+		});
+		radioButton160Do375.setBounds(34, 97, 125, 23);
+		panelCeenaa.add(radioButton160Do375);
+		
+	    radioButton375Do550 = new JRadioButton("375\u20ac-550\u20ac");
+	    radioButton375Do550.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	    grupaCena.add(radioButton375Do550);
+	    radioButton375Do550.setForeground(Color.WHITE);
+	    radioButton375Do550.setBackground(new Color(255, 51, 51));
+	    radioButton375Do550.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				buttonZavrsii.setVisible(true);
+				
+
+			}
+		});
+	    radioButton375Do550.setBounds(34, 137, 125, 23);
+	    panelCeenaa.add(radioButton375Do550);
+	    
+	    radioButton550Do800 = new JRadioButton("550\u20ac-800\u20ac");
+	    radioButton550Do800.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	    grupaCena.add(radioButton550Do800);
+	    radioButton550Do800.setForeground(Color.WHITE);
+	    radioButton550Do800.setBackground(new Color(255, 51, 51));
+	    radioButton550Do800.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				buttonZavrsii.setVisible(true);
+				
+
+			}
+		});
+	    radioButton550Do800.setBounds(34, 177, 125, 23);
+	    panelCeenaa.add(radioButton550Do800);
 		txtpnUkoliko.setVisible(false);
 
 		// 11.pitanje
-
+/*
 		JPanel panelCena = new JPanel();
 		panelCena.setBackground(Color.BLACK);
 		panelSaPitanjima.add(panelCena, CENA);
@@ -1612,7 +1808,7 @@ public class FormaIzborProzora extends JFrame {
 				.getResource("/slike/logo.png")));
 		lblLogo8.setBounds(10, 448, 465, 66);
 		panelCena.add(lblLogo8);
-
+*/
 
 	}
 }
