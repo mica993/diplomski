@@ -31,10 +31,10 @@ public class Niti extends Thread {
 				System.out.print("");
 			}
 			if(!formaIP.isVisible()){
-				System.out.println("nnn" + dp.toString());
+				//System.out.println("nnn" + dp.toString());
 				kSession.insert(dp);
 				kSession.fireAllRules();
-				//FormaIzborProzora answerForm = new FormaIzborProzora(dp);
+				
 				FormaResenje resenje = new FormaResenje(dp);
 				resenje.setVisible(true);
 			}
