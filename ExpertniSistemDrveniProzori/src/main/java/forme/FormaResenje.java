@@ -312,13 +312,13 @@ public class FormaResenje extends JFrame {
 		JLabel label = new JLabel("+387 65 / 511-364");
 		label.setFont(new Font("Tahoma", Font.BOLD, 14));
 		label.setForeground(Color.WHITE);
-		label.setBounds(121, 133, 136, 14);
+		label.setBounds(121, 133, 374, 14);
 		contentPane.add(label);
 
 		JLabel lblMahagonioutlookcom = new JLabel("mahagoni@outlook.com");
 		lblMahagonioutlookcom.setForeground(Color.WHITE);
 		lblMahagonioutlookcom.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMahagonioutlookcom.setBounds(121, 153, 167, 32);
+		lblMahagonioutlookcom.setBounds(121, 153, 364, 32);
 		contentPane.add(lblMahagonioutlookcom);
 
 	}

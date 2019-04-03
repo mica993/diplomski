@@ -71,7 +71,7 @@ public class DBBroker {
 		   
 		   upit = "SELECT * FROM prozori WHERE brojStakala = " + dp.getBrojStakala();
 	 
-		   	 if(dp.getPodrucje() == Podrucje.Primorskom ||( dp.getMinCena() == 0 && dp.getMaxCena() == 0) || dp.getDimenzije() == "Druge") {
+		   	 if(dp.getPodrucje() == Podrucje.Primorskom &&( dp.getMinCena() == 0 && dp.getMaxCena() == 0) || dp.getDimenzije() == "Druge") {
 		   		upit += " AND materijal != 'Bor'" ;
 		   		dp.setMaterijal(null);
 		 	   System.out.println("Podrucje primorsko  " + upit );
