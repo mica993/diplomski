@@ -518,7 +518,7 @@ no-loop true
         System.out.println("38.Pravilo");
         update( dp );
 end
-rule " Ako je tip Dvokrilni prozor debljine  68cm ,minCena>=550 , a maxcena<=800, onda mu predlozi  materijal Hrast "
+rule " Ako je tip Dvokrilni prozor debljine  68cm , minCena>=550 , a maxcena<=800, onda mu predlozi  materijal Hrast "
 //lock-on-active true
 no-loop true
 //salience 10
