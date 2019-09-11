@@ -31,7 +31,8 @@ public class DBBroker {
 	    public void otvoriKonenkciju() {
         
 	        try {
-	            konekcija= DriverManager.getConnection("jdbc:mysql://localhost:3306/namestaj", "root", "");
+	           // konekcija= DriverManager.getConnection("jdbc:mysql://localhost:3306/namestaj", "root", "");
+	        	konekcija= DriverManager.getConnection("jdbc:mysql://www.db4free.net:3306/namestaj", "milicaaa", "MilicaASarajevo");
 	            konekcija.setAutoCommit(false);
 	            
 	        } catch (SQLException ex) {

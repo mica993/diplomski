@@ -351,7 +351,7 @@ end
 
 
 rule "Ako je osetljivost na hladnocu i buku Slabija , a  mestoZivljrnja planinsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 90  "
-no-loop true
+lock-on-active true
 //salience 10
     when
        dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije" && (  blizinaUlice == true || blizinaUlice == false) && podrucje == Podrucje.Planinskom )
@@ -364,7 +364,7 @@ no-loop true
 end
 
 rule "Ako je osetljivost na hladnocu i buku Da , a  mestoZivljenja primorsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 78  "
-no-loop true
+lock-on-active true
 //salience 10
     when
        dp : DrveniProzor( osetljivostNaHladnocu == "Da" && osetljivostNaBuku == "Da" && (  blizinaUlice == true || blizinaUlice == false) && podrucje == Podrucje.Primorskom )

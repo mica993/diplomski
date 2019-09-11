@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 
 
+
 //import javax.print.attribute.standard.JobOriginatingUserName;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import java.awt.Font;
+import java.io.IOException;
 
 //import java.util.ArrayList;
 
@@ -45,8 +47,8 @@ public class FormaResenje extends JFrame {
 	JButton btnPredhodno = new JButton("Predhodno");;
 	JButton btnSledeci = new JButton("Slede\u0107i");
 	JTextPane txtpnPogledajteDaLi;
-
-	ResultSet rs;
+   private boolean imaVezu = false;
+	ResultSet rs = null;
 	DrveniProzor dp2 = null;
 	private JLabel lblslika;
 
@@ -115,7 +117,7 @@ public class FormaResenje extends JFrame {
 
 		// Ispis iz baze
 
-		rs = Kontroler.getInstanca().vratiResenje(dp);
+	/*	rs = Kontroler.getInstanca().vratiResenje(dp);
 		try {
 			if (rs.next()) {
 
@@ -163,13 +165,84 @@ public class FormaResenje extends JFrame {
 			// e.printStackTrace();
 			System.out.println("Greska baza");
 		}
+*/
+		Process p1 = null;
+		try {
+			p1 = java.lang.Runtime.getRuntime().exec("ping -n 1 www.db4free.net");
+		} catch (IOException e1) {
+			System.out.println("Gre\u0161ka kod veze sa internetom");
+			e1.printStackTrace();
+		}
+		    int returnVal = 0;
+			try {
+				returnVal = p1.waitFor();
+			} catch (InterruptedException e1) {
+				System.out.println("Gre\u0161ka kod ping-a");
+				e1.printStackTrace();
+			}
+		    imaVezu = (returnVal==0);
+		    System.out.println("Dosao do ovde");
+		    if(imaVezu){
+		    	rs = Kontroler.getInstanca().vratiResenje(dp);
+				try {
+					if (rs.next()) {
 
+						try {
+							dp2 = new DrveniProzor(rs.getString("tip"),
+									rs.getInt("debljinaRama"),
+									rs.getInt("brojStakala"),
+									rs.getString("materijal"),
+									rs.getString("dimenzija"), rs.getInt("cena"));
+
+							lblNatpis.setText(dp2.ispisNaFormiIzBaze());
+							lblNatpis.setEditable(false);
+							byte image[];
+							image = rs.getBytes("slika");
+							ImageIcon icon = new ImageIcon(image);
+							Image im = icon.getImage();
+							Image imm = im.getScaledInstance(lblslika.getWidth(),
+									lblslika.getHeight(), Image.SCALE_SMOOTH);
+							ImageIcon myImg = new ImageIcon(imm);
+							lblslika.setIcon(myImg);
+							System.out.println("*************************");
+							System.out.println(rs.toString());
+							System.out.println(dp2.ispisNaFormiIzBaze());
+						} catch (SQLException e) {
+							e.printStackTrace();
+							System.out.println("Greska prikaz");
+
+							// JOptionPane.showMessageDialog(contentPane,
+							// "Nema proizvod u bazi ",
+							// "Greska", JOptionPane.ERROR_MESSAGE);
+
+						}
+						
+
+					} else {
+
+						lblNatpis.setText("Nema proizvoda u bazi");
+						lblNatpis.setEditable(false);
+						lblslika.setIcon(new ImageIcon(FormaResenje.class.getResource("/slike/prozor.jpg")));
+						//lblslika.setIcon(new ImageIcon(FormaPocetnaMain.class.getResource("/slike/")));
+
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					// e.printStackTrace();
+					System.out.println("Greska baza");
+				}
+
+		    }else{
+		    	btnSledeci.setVisible(false);
+		    	lblNatpis.setEditable(false);
+		    lblslika.setText("Nema konekcije sa internetom!");
+		    }
 		// Dugme sledeci
 
 		btnSledeci.setBackground(Color.BLACK);
 		btnSledeci.setForeground(Color.WHITE);
 		btnSledeci.setBounds(611, 622, 103, 38);
-
+		if(imaVezu){
 		try {
 			if (rs.next()) {
 
@@ -223,7 +296,7 @@ public class FormaResenje extends JFrame {
 		/*
 		 * btnPredhodno.addActionListener(new ActionListener() { public void
 		 * actionPerformed(ActionEvent arg0) { } });
-		 */
+		 */}
 		btnPredhodno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -235,7 +308,7 @@ public class FormaResenje extends JFrame {
 		btnPredhodno.setBounds(487, 622, 103, 38);
 		btnPredhodno.setVisible(false);
 		contentPane.add(btnPredhodno);
-
+		if(imaVezu){
 		try {
 			if (rs.previous()) {
 				btnPredhodno.addActionListener(new ActionListener() {
@@ -279,7 +352,7 @@ public class FormaResenje extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+	}
 		contentPane.setLayout(null);
 		contentPane.add(btnSledeci);
 
@@ -323,3 +396,4 @@ public class FormaResenje extends JFrame {
 
 	}
 }
+ 

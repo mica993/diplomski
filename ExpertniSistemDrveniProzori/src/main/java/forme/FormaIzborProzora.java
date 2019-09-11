@@ -891,7 +891,7 @@ public class FormaIzborProzora extends JFrame {
 		lblLogooo.setBounds(10, 448, 465, 66);
 		panelGrejanje.add(lblLogooo);
 		
-	    radioKonbinovano = new JRadioButton("Konbinovno");
+	    radioKonbinovano = new JRadioButton("Kombinovano");
 	    radioKonbinovano.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	    grupaGrejanje.add(radioKonbinovano);
 		radioKonbinovano.setForeground(Color.WHITE);
@@ -902,7 +902,7 @@ public class FormaIzborProzora extends JFrame {
 				// buttonNazad5.setVisible(true);
 				//textPane5.setVisible(false);
 
-			}
+			} 
 		});
 		radioKonbinovano.setBackground(new Color(255, 51, 51));
 		radioKonbinovano.setBounds(34, 177, 138, 23);
