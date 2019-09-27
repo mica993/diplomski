@@ -6,7 +6,7 @@ import klasa.DrveniProzor;
 import klasa.DrveniProzor.*;
 
 
-rule "Ako je mesto zivljenja stam , a pozicija stana istok ili zapad dovoljna je debljina rama "
+rule "Ако је место живљења стан, а позиција стана исток или запад довољна је дебљина рама 68"
 lock-on-active true
 //salience 10
     when
@@ -20,7 +20,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je spratnost stana manja od 4 , dovoljna je debljina rama 68"
+rule " Ако је спратност стана мања од 4, довољна је дебљина рама 68"
 lock-on-active true
 //salience 9
     when
@@ -33,7 +33,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je debljina rama 68 , moze samo dvoslojno staklo"
+rule " Ако је дебљина рама 68, може само двослојно стакло"
 no-loop true
 //salience 10
    when
@@ -44,7 +44,7 @@ no-loop true
     System.out.println("3.Pravilo");
       update( dp );
 end
-rule " Ako je spratnost stana  > 4 i <15 , dovoljna je debljina rama 78"
+rule "Ако је спратност стана већа од 4 и мања од 15, довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -57,7 +57,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je spratnost stana   <16 , dovoljna je debljina rama 90"
+rule " Ако је спратност стана већа од 16, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
@@ -70,7 +70,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Na osnovu  pozicije stana(jug) odredjujemo debljinu rama"
+rule "На основу позиције стана (југ), одређује се дебљина рама"
 lock-on-active true
 //salience 10
     when
@@ -83,7 +83,7 @@ lock-on-active true
         System.out.println("6.Pravilo");
         update( dp );
 end
-rule "Na osnovu pozicije stana (sever) odredjujemo debljinu rama"
+rule "На основу позиције стана (север), одређује се дебљина рама"
 lock-on-active true
 //salience 10
     when
@@ -97,7 +97,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je debljina rama 78 ili 90 , moze samo troslojno staklo"
+rule " Ако је дебљина рама прозора 78 или 90, може само трослојно стакло"
 no-loop true
 //salience 10
    when
@@ -109,7 +109,7 @@ no-loop true
       update( dp );
 end
 
-rule "Na osnovu debljine izolacije(4) odredjujemo debljinu rama"
+rule "На основу дебљине изолације (4), одређује се дебљина рама"
 lock-on-active true
 //salience 10
     when
@@ -123,7 +123,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Na osnovu debljine(8) izolacije odredjujemo debljinu rama"
+rule "На основу дебљине изолације (8), одређује се дебљина рама"
 lock-on-active true
 //salience 10
     when
@@ -139,7 +139,7 @@ end
 
 
 
-rule "Na osnovu debljine izolacije (10) odredjujemo debljinu rama"
+rule "На основу дебљине изолације (10), одређује се дебљина рама"
 lock-on-active true
 //salience 10
     when
@@ -153,7 +153,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako mu  je grejanje centralno ili necentralizovano ili konbinovano i zivi na primorskom podrucju dovoljno mu je debljina ramam 68 "
+rule "Ако корисник има грејање централно или нецентрализовано или конбиновано, а при томе живи на приморском подручју, довољна је дебљина рама 68 "
 lock-on-active true
 //salience 10
     when
@@ -166,7 +166,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako mu  je grejanje centralno  i zivi na planinskom  ili brdckom podrucju dovoljno mu je debljina ramam 78 "
+rule "Ако корисник има грејање централно и живи на планинском или брдцком подручју, потребна је дебљина рама 78”"
 lock-on-active true
 //salience 10
     when
@@ -178,7 +178,7 @@ lock-on-active true
         System.out.println("13.Pravilo");
         update( dp );
 end
-rule "Ako mu  je grejanje necentralizovano ili konbinovano i zivi na planinskom podrucju ili brdckom dovoljno mu je debljina ramam 90 "
+rule "Ако корисник има грејање нецентрализовано или конбиновано и живи на планинском или брдцком подручју, потребна је дебљина рама 90 "
 lock-on-active true
 //salience 10
     when
@@ -192,7 +192,7 @@ lock-on-active true
 end
 
 
-rule "Ako mu  je grejanje necentralizovano i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 90 "
+rule "Ако корисник има грејање нецентрализовано и живи у равничарском подручју, потребна је дебљина рама 90 "
 lock-on-active true
 //salience 10
     when
@@ -205,7 +205,7 @@ lock-on-active true
         System.out.println("15.Pravilo");
         update( dp );
 end
-rule "Ako mu  je grejanje centralno i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 68 "
+rule "Ако корисник има грејање централно и живи у равничарском подручју, довољна је дебљина рама 68"
 lock-on-active true
 //salience 10
     when
@@ -218,7 +218,7 @@ lock-on-active true
         System.out.println("16.Pravilo");
         update( dp );
 end
-rule "Ako  zivi na primorskom podrucju postavi materijal na null   "
+rule "Ако корисник живи на приморском подручју, систем ће постави материјал на неодређено(null)"
 lock-on-active true
 //salience 10
     when
@@ -231,7 +231,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako je osetljivost na buku i hladnocu = DA i blizina ulice ili Da  postavi debljinu rama na 90 "
+rule "Ако је осетљивост на буку и хладноћу= ДА и близина улице= ДА, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
@@ -245,7 +245,7 @@ lock-on-active true
 end
 
 
-rule "Ako je osetljivost na  buku  i hladnocu = Slabije  i blizina ulice ili Da ili Ne  postavi debljinu rama na 78 "
+rule "Ако је осетљивост на буку и хладноћу = Слабија и (близина улице= ДА или близина улице= НЕ), довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -259,7 +259,7 @@ lock-on-active true
 end
 
 
-rule " Ako je osetljivost na buku  i hladnocu = NE ,a blizina ulice Ne  postavi debljinu rama na 68 "
+rule "Ако је осетљивост на буку и хладноћу= НЕ и близина улице= НЕ, довољна је дебљина рама 68"
 lock-on-active true
 //salience 10
     when
@@ -274,7 +274,7 @@ end
 
 
 
-rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne i blizina ulice Ne  postavi debljinu rama na 78  "
+rule "Ако је осетљивост на хладноћу= ДА остељивост на буку!= ДА и близина улице= НЕ, довољна је дебљина рама 78  "
 lock-on-active true
 //salience 10
     when
@@ -286,7 +286,7 @@ lock-on-active true
         System.out.println("21.Pravilo");
         update( dp );
 end
-rule "Ako je osetljivost na hladnocu Slabije , a  na buku razlicito od slabije,blizina ulice  Da , a podrucje razlicito od Primorskog, postavi debljinu rama na 90  "
+rule "Ако је осетљивост на хладноћу= Слабија остељивост на буку!= Слабија и близина улице= ДА, а подручије!= Приморско, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
@@ -298,11 +298,11 @@ lock-on-active true
         System.out.println("22.Pravilo");
         update( dp );
 end
-rule "Ako je Osetljivost na hladnocu Ne  , a na buku razlicito od Ne i blizina ulice ili Da ili Ne  postavi debljinu rama na 78 "
+rule "Ако је осетљивост на хладноћу= НЕ остељивост на буку!=НЕ и близина улице ДА, довољна је дебљина рама 78 "
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Ne" && osetljivostNaBuku != "Ne" &&(  blizinaUlice == true || blizinaUlice == false))
+       dp : DrveniProzor( osetljivostNaHladnocu == "Ne" && osetljivostNaBuku != "Ne" &&  blizinaUlice == true)
     then
      
          dp.setDebljina(78);
@@ -312,7 +312,7 @@ lock-on-active true
 end
 
 
-rule "Ako je osetljivost na buku = DA , a na hladnocu = Slabije ili Ne i blizina ulice Ne  postavi debljinu rama na 78  "
+rule "Ако је осетљивост на хладноћу!= ДА, а остељивост на буку= ДА и близина улице= НЕ, довољна је дебљина рама 78 "
 lock-on-active true
 //salience 10
     when
@@ -324,7 +324,7 @@ lock-on-active true
         System.out.println("24.Pravilo");
         update( dp );
 end
-rule "Ako je osetljivost na buku Slabije ,a na hladnocu razlicito od slabije i blizina ulice ili Da ili Ne  postavi debljinu rama na 78   "
+rule "Ако је осетљивост на хладноћу!= Слабија, а остељивост на буку= Слабија и близина улице или ДА или НЕ, довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -336,7 +336,7 @@ lock-on-active true
         System.out.println("25.Pravilo");
         update( dp );
 end
-rule "Ako je osetljivost na buku Ne  , a na hladnocu razlicito od Ne  i blizina ulice Ne  postavi debljinu rama na 78"
+rule "Ако је осетљивост на буку= НЕ и хладноћу!= НЕ и близина улице= НЕ, довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -350,11 +350,11 @@ lock-on-active true
 end
 
 
-rule "Ako je osetljivost na hladnocu i buku Slabija , a  mestoZivljrnja planinsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 90  "
+rule "Ако је осетљивост на буку и хладноћу= Слабија и близина улице или ДА или НЕ, и живиу планинском подручју, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
-       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije" && (  blizinaUlice == true || blizinaUlice == false) && podrucje == Podrucje.Planinskom )
+       dp : DrveniProzor( osetljivostNaHladnocu == "Slabije" && osetljivostNaBuku == "Slabije" && blizinaUlice == true  && podrucje == Podrucje.Planinskom )
     then
      
          dp.setDebljina(90);
@@ -363,7 +363,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako je osetljivost na hladnocu i buku Da , a  mestoZivljenja primorsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 78  "
+rule "Ако је осетљивост на буку и хладноћу= ДА и близина улице или ДА или НЕ,  и живи на приморском подручју, довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -376,7 +376,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Osetljivost na buku  i hladnocu = NE, a podrucje planinsko i blizina ulice ili Da ili Ne  postavi debljinu rama na 78  "
+rule "Ако је осетљивост на буку и хладноћу= НЕ и близина улице или ДА или НЕ, и живи на планинском подручју или брдцком, довољна је дебљина рама 78 "
 lock-on-active true
 //salience 10
     when
@@ -390,7 +390,7 @@ lock-on-active true
 end
 
 
-rule "Ako kuca nema fasade ,pozicionirana je na podrucju koje nije Primorsko i grejanje nije centralno , potrebna je debljina rama 90 "
+rule "Ако кућа нема фасаду, а налази се на подручју које није приморско и има грејање које није централно, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
@@ -405,7 +405,7 @@ lock-on-active true
 end
      
 
-rule " Ako su su dimenzije 100x120 tip Jednokrilni "
+rule "Ако су димензије прозора 100х120, тип прозора је Једнокрилни"
 lock-on-active true
 //salience 10
     when
@@ -419,7 +419,7 @@ lock-on-active true
 end
 
 
-rule " Ako su su dimenzije 100x140 tip je Jednokrilni  "
+rule " Ако су димензије прозора 100х140, тип прозора је Једнокрилни "
 lock-on-active true
 //salience 10
     when
@@ -431,7 +431,7 @@ lock-on-active true
         System.out.println("32.Pravilo");
         update( dp );
 end
-rule " Ako su su dimenzije 160x140 tip je Dvokrilni  "
+rule "Ако су димензије прозора 160х140, тип прозора је Двокрилни"
 lock-on-active true
 //salience 10
     when
@@ -445,7 +445,7 @@ lock-on-active true
 end
 
 
-rule " Ako je tip Jednokrilni prozor debljine 78, a mincene>=550 ,a maxCena <=800 onda je materijal Hrast "
+rule "Ако је тип прозора Једнокрилни, дебљин рама 78, а мин цена >= 550, макс цена<= 800, систем ће предложити материјал Храст"
 //lock-on-active true
 no-loop true
 //salience 10
@@ -460,7 +460,7 @@ no-loop true
 end
 
 
-rule " Ako je tip Dvokrilni prozor debljine  78 cm  ,a mincene>=550 ,a maxCena <=800 predlozi onda  materijal Hrast "
+rule "Ако је тип прозора Двокрилни, дебљин рама 78, а мин цена >= 550, макс цена<= 800, систем ће предложити материјал Храст" 
 //lock-on-active true
 no-loop true
 //salience 10
@@ -476,7 +476,7 @@ end
 
 
 
-rule " Ako izabere druge dimenzije setuj Tip i dimenzije na null da bi iz baze da predlozi neka rendom resenja  "
+rule "Ако корисник изабер друге дименнзије, тип и димензије се сетују на неодређено (null), да би систем из базе преложио рендом решења"
 lock-on-active true
 //salience 10
     when
@@ -490,7 +490,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je tip Jednokrilni,debljine 90cm , minCena>=550 , a maxcena<=800 onda mu predlozi materijal Hrast "
+rule "Ако је тип прозора Једнокрилни, дебљин рама 90, а мин цена >= 550, макс цена<= 800, систем ће предложити материјал Храст"
 //lock-on-active true
 no-loop true
 //salience 10
@@ -505,7 +505,7 @@ no-loop true
 end
 
 
-rule " Ako je tip Jednokrilni prozor debljine 68cm ,minCena>=550 , a maxcena<=800 onda mu predlozi mu materijal Hrast "
+rule " Ако је тип прозора Једнокрилни, дебљин рама 68, а мин цена >= 550, макс цена<= 800, систем ће предложити материјал Храст "
 //lock-on-active true
 no-loop true
 //salience 10
@@ -518,7 +518,7 @@ no-loop true
         System.out.println("38.Pravilo");
         update( dp );
 end
-rule " Ako je tip Dvokrilni prozor debljine  68cm , minCena>=550 , a maxcena<=800, onda mu predlozi  materijal Hrast "
+rule "Ако је тип прозора Двокрилни, дебљин рама 68, а мин цена >= 550, макс цена<= 800, систем ће предложити материјал Храст"
 //lock-on-active true
 no-loop true
 //salience 10
@@ -532,7 +532,7 @@ no-loop true
         update( dp );
 end
 
-rule "Ako je osetljivost  buku i hladnocu = DA a blizina ulice = true, potrebna je debljina rama 78cm "
+rule "Ако је осетљивост на буку и хладноћу= НЕ и близина улице= ДА, довољна је дебљина рама 78 "
 lock-on-active true
 //salience 10
     when
@@ -544,7 +544,7 @@ lock-on-active true
         System.out.println("40.Pravilo");
         update( dp );
 end
-rule " Ako su dimenzije razlicite 100x140 ili 140x1140 ili 160x140 i devljina rama 90cm , postavi debljinu na 0 jer za ove dimenzije nema debljina 90cm,pa ce sistem da predlozi prozor drugih dimenzija"
+rule "Ако су димензије прозора 100х140 или 140х140 или 160х140, и ако је дебљина рама 90, постави дебљину на 0 , јер за ове димензије не постоји у бази ова дебљина рама"
 //lock-on-active true
 no-loop true
 //salience 10
@@ -559,7 +559,7 @@ no-loop true
 end
 
 
-rule "Ako je osetljivost  buku i hladnocu = Ne a blizina ulice = true, kuca nema fasadu,pozicionirana je na podrucju koje nije Primorsko i grejanje nije centralno , potrebna je debljina rama 78 "
+rule "Ако је осетљивост на буку и хладноћу= НЕ и близина улице= ДА, а кућа нема фасадну изолацију, налази се на подручју које није Приморско и грејање није централно, довољна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -587,8 +587,7 @@ lock-on-active true
         update( dp );
 end
 
-rule "Ako je osetljivost na buku i hladnocu = DA blizinaUlice == false , potrebna je debljina rama 78cm    "
- 
+rule "Ако је осетљивост на буку и хладноћу= ДА и близина улице= NE, потребна је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -600,7 +599,7 @@ lock-on-active true
         System.out.println("44.Pravilo");
         update( dp );
 end
-rule "Ako mu  je grejanje konbinovano i zivi na ravnivarskom podrucju dovoljno mu je debljina ramam 78cm "
+rule "Ако корисник има конбиновано грејање и живи на равничарском подручју, довољна му је дебљина рама 78"
 lock-on-active true
 //salience 10
     when
@@ -613,7 +612,7 @@ lock-on-active true
         System.out.println("45.Pravilo");
         update( dp );
 end
-rule "Osetljivost na hladnocu = DA , a na buku = Slabije ili Ne i blizina ulice DA,zivi na podrucju koje nije primorsko , potrebna je debljina rama 90cm    "
+rule "Ако је осетљивост на хладноћу= ДА, а остељивост на буку= Слабија или НЕ и близина улице= ДА, а живи на подручју које није приморско, потребна је дебљина рама 90"
   
 lock-on-active true
 //salience 10
@@ -627,7 +626,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je  minCena >= 550 && maxCena <= 800  onda ih postavi na  0  da bi iz baza prikazala i cene manje od ovog okvira"
+rule "Ако корисник изабер мин цена >= 550 и  макс цена<= 800, онда их систем постави на 0 да би из базе приказао прозоре јефтиније од овог оквира"
 lock-on-active true
 //no-loop true
 //salience 10
@@ -642,7 +641,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako je podrucje Primorsko ,a minCena>=160, maxCena<375 daj mi prozore od materijala Jela "
+rule "Ако корисник живи на приморском подручју, а изабере мин цена >= 160 и  макс цена<= 375, онда систем предлаже за прозоре од материјала Јела"
 lock-on-active true
 //no-loop true
 //salience 10
@@ -656,7 +655,7 @@ lock-on-active true
         update( dp );
 end
 
-rule " Ako su su dimenzije==100x120 debljina razlicita od 90 i minCena >= 375,maxCena <= 550 onda setuj minCenu i maxCenu na 0 da bi mu se iz baze prikazali proizvodi i manji od ovog okvira   "
+rule " Ако корисник изабере димензије прозора 100х120, а дебљина рама је различита од 90 и изабере мин цена >= 375 и  макс цена<= 550, онда систем постави мин и макс цену на 0 да би се из базе се приказали прозори јефтинији од овог оквира"
 //lock-on-active true
 no-loop true
 //salience 10
@@ -670,7 +669,7 @@ no-loop true
         System.out.println("49.Pravilo");
         update( dp );
 end
-rule " Ako su dimenzije= 140x140, a minCena>=375, maxCena<=550 daj samo dvokrilne prozore "
+rule " Ако корисник изабере димензије прозора 140х140, и изабере мин цена >= 375 и  макс цена<= 550, онда му систем предложи само прозоре типа Двокрилни "
 lock-on-active true
 //no-loop true
 //salience 10
@@ -683,7 +682,7 @@ lock-on-active true
         System.out.println("50.Pravilo");
         update( dp );
 end
-rule "Ako je osetljivost na hladnocu i buku Slabije ,blizina ulice ili Da ili Ne , a grejanje necentralizovano, postavi debljinu rama na 90  "
+rule "Ако је осетљивост корисника на хладноћу и буку= Слабија и близина улице= ДА, а има нецентрализовано грејање, и живи на подручју које није приморско, потребна је дебљина рама 90"
 lock-on-active true
 //salience 10
     when
